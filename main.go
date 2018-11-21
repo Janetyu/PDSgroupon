@@ -1,65 +1,55 @@
 package main
 
 import (
+	"log"
 	"net/http"
 
 	"github.com/gin-gonic/gin"
+
+	"PDSgroupon/router"
+	"errors"
+	"time"
 )
 
-var db = make(map[string]string)
+func main() {
+	// 创建引擎
+	g := gin.New()
 
-func setupRouter() *gin.Engine {
-	// Disable Console Color
-	// gin.DisableConsoleColor()
-	r := gin.Default()
+	// gin 中间件
+	middlewares := []gin.HandlerFunc{}
 
-	// Ping test
-	r.GET("/ping", func(c *gin.Context) {
-		c.String(http.StatusOK, "pong")
-	})
+	// 路由加载
+	router.Load(
+		// gin 核心引擎
+		g,
+		// 中间件列表加载
+		middlewares...,
+	)
 
-	// Get user value
-	r.GET("/user/:name", func(c *gin.Context) {
-		user := c.Params.ByName("name")
-		value, ok := db[user]
-		if ok {
-			c.JSON(http.StatusOK, gin.H{"user": user, "value": value})
-		} else {
-			c.JSON(http.StatusOK, gin.H{"user": user, "status": "no value"})
+	// Ping the server to make sure the router is working.
+	go func() {
+		if err := pingServer(); err != nil {
+			log.Fatal("The router has no response, or it might took too long to start up.", err)
 		}
-	})
+		log.Print("The router has been deployed successfully.")
+	}()
 
-	// Authorized group (uses gin.BasicAuth() middleware)
-	// Same than:
-	// authorized := r.Group("/")
-	// authorized.Use(gin.BasicAuth(gin.Credentials{
-	//	  "foo":  "bar",
-	//	  "manu": "123",
-	//}))
-	authorized := r.Group("/", gin.BasicAuth(gin.Accounts{
-		"foo":  "bar", // user:foo password:bar
-		"manu": "123", // user:manu password:123
-	}))
-
-	authorized.POST("admin", func(c *gin.Context) {
-		user := c.MustGet(gin.AuthUserKey).(string)
-
-		// Parse JSON
-		var json struct {
-			Value string `json:"value" binding:"required"`
-		}
-
-		if c.Bind(&json) == nil {
-			db[user] = json.Value
-			c.JSON(http.StatusOK, gin.H{"status": "ok"})
-		}
-	})
-
-	return r
+	log.Printf("Start to learning the incoming requests on http address: %s", ":8080")
+	log.Printf(http.ListenAndServe(":8080", g).Error())
 }
 
-func main() {
-	r := setupRouter()
-	// Listen and Server in 0.0.0.0:8080
-	r.Run(":8080")
+// pingServer pings the http server to make sure the router is working.
+func pingServer() error {
+	for i := 0; i < 2; i++ {
+		// Ping the server by sending a GET request to `/health`.
+		resp, err := http.Get("http://127.0.0.1:8080" + "/sd/health")
+		if err == nil && resp.StatusCode == 200 {
+			return nil
+		}
+
+		// Sleep for a second to continue the next ping.
+		log.Print("Waiting for the router, retry in 1 second.")
+		time.Sleep(time.Second)
+	}
+	return errors.New("Cannot connect to the router.")
 }

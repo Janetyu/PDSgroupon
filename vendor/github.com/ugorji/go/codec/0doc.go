@@ -235,7 +235,7 @@ MID-STACK INLINING:
     zf=7; go build -gcflags "-m=2 -l=4" > $TMPDIR/a$zf.txt 2>&1
     for i in decReaderSwitch bytesDecReader bufioDecReader ioDecReader \
         encWriterSwitch bytesEncAppender bufioEncWriter ioEncWriter
-    do echo ; grep -E "cannot inline \(\*${i}\)." $TMPDIR/a7.txt; done 
+    do echo ; grep -E "cannot inline \(\*${i}\)." $TMPDIR/a7.txt; done
 
   - When mid-stack inlining is enabled, consider doing the following:
     - if 41<=inlineExtraCallCost<=56,
@@ -258,7 +258,7 @@ BEFORE EACH RELEASE:
     - critical shared objects that are read many times
       TypeInfos
     - pooled objects:
-      decNaked, decNakedContainers, codecFner, typeInfoLoadArray, 
+      decNaked, decNakedContainers, codecFner, typeInfoLoadArray,
     - small objects allocated independently, that we read/use much across threads:
       codecFn, typeInfo
     - Objects allocated independently and used a lot

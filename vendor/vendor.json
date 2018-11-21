@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "yhTiJjxJNlO/YLPFHMERe2nPph8=",
+			"path": "github.com/StackExchange/wmi",
+			"revision": "b12b22c5341f0c26d88c4d66176330500e84db68",
+			"revisionTime": "2018-07-25T03:58:23Z"
+		},
+		{
 			"checksumSHA1": "BhMowD2DIKSd9qq8Pzh7Y3mh2/w=",
 			"path": "github.com/gin-contrib/sse",
 			"revision": "22d885f9ecc78bf4ee5d72b937e4bbcdc58e8cae",
@@ -41,6 +47,18 @@
 			"versionExact": "v1.3.0"
 		},
 		{
+			"checksumSHA1": "ssTPXaA8TifoLud6kI1cRxPZgBo=",
+			"path": "github.com/go-ole/go-ole",
+			"revision": "7a0fa49edf48165190530c675167e2f319a05268",
+			"revisionTime": "2018-06-25T08:58:08Z"
+		},
+		{
+			"checksumSHA1": "8WEwmkTfx50YYgQZblE1fKHsgDI=",
+			"path": "github.com/go-ole/go-ole/oleutil",
+			"revision": "7a0fa49edf48165190530c675167e2f319a05268",
+			"revisionTime": "2018-06-25T08:58:08Z"
+		},
+		{
 			"checksumSHA1": "mK1ly7aFRjcljbB3BhHbUgtCAXk=",
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "882cf97a83ad205fd22af574246a3bc647d7a7d2",
@@ -71,6 +89,36 @@
 			"revisionTime": "2018-07-18T01:23:57Z"
 		},
 		{
+			"checksumSHA1": "pRQV39yW3LaGvFpHNrKBE8ecvmc=",
+			"path": "github.com/shirou/gopsutil/cpu",
+			"revision": "a11c78ba2c13c5b1ee59c53296ba35f92f0ce658",
+			"revisionTime": "2018-09-27T12:43:08Z"
+		},
+		{
+			"checksumSHA1": "iAR2mHOOWEB0YfrzhX4g/AHI+UE=",
+			"path": "github.com/shirou/gopsutil/disk",
+			"revision": "a11c78ba2c13c5b1ee59c53296ba35f92f0ce658",
+			"revisionTime": "2018-09-27T12:43:08Z"
+		},
+		{
+			"checksumSHA1": "MBdGJvo7fcSh68Jxrrw0OBpxzB0=",
+			"path": "github.com/shirou/gopsutil/internal/common",
+			"revision": "a11c78ba2c13c5b1ee59c53296ba35f92f0ce658",
+			"revisionTime": "2018-09-27T12:43:08Z"
+		},
+		{
+			"checksumSHA1": "W1ej/1ZLjFWvHl2GeiF0NUn1hBU=",
+			"path": "github.com/shirou/gopsutil/load",
+			"revision": "a11c78ba2c13c5b1ee59c53296ba35f92f0ce658",
+			"revisionTime": "2018-09-27T12:43:08Z"
+		},
+		{
+			"checksumSHA1": "FJHzSeJBGMJo/hqXkHPDvNZe2q8=",
+			"path": "github.com/shirou/gopsutil/mem",
+			"revision": "a11c78ba2c13c5b1ee59c53296ba35f92f0ce658",
+			"revisionTime": "2018-09-27T12:43:08Z"
+		},
+		{
 			"checksumSHA1": "VRWyUFOEsZObguTamTLitFrwHt4=",
 			"path": "github.com/ugorji/go/codec",
 			"revision": "f8fe4a359c185b03b17daf37779b0729bbf02ac0",
@@ -79,6 +127,12 @@
 		{
 			"path": "golang.org/x/sys/unix",
 			"revision": ""
+		},
+		{
+			"checksumSHA1": "Y7nctMxT58lRM78VtElPerhcnEs=",
+			"path": "golang.org/x/sys/windows",
+			"revision": "0cf1ed9e522b7dbb416f080a5c8003de9b702bf4",
+			"revisionTime": "2018-11-20T21:29:04Z"
 		},
 		{
 			"checksumSHA1": "q190bL03wQok3wVwYmMub2XhOiU=",
