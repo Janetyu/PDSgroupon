@@ -11,6 +11,7 @@ import (
 	"github.com/spf13/viper"
 
 	"PDSgroupon/config"
+	"PDSgroupon/model"
 	"PDSgroupon/router"
 )
 
@@ -26,6 +27,10 @@ func main() {
 	if err := config.Init(*cfg); err != nil {
 		panic(err)
 	}
+
+	// init db
+	model.DB.Init()
+	defer model.DB.Close()
 
 	// viper热更新配置文件
 	//for {
