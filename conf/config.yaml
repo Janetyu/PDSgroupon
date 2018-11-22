@@ -12,3 +12,13 @@ log:
   log_rotate_date: 1    # 转存时间为1天
   log_rotate_size: 1024 # 转存大小为1MB
   log_backup_count: 7   # 备份文件的最大个数
+db:
+  name: groupon
+  addr: 127.0.0.1:3306
+  username: root
+  password: root
+docker_db:
+  name: groupon
+  addr: 127.0.0.1:3306
+  username: root
+  password: root
