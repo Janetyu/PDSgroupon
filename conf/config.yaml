@@ -3,3 +3,12 @@ addr: :8080
 name: groupon
 url: http://127.0.0.1:8080
 max_ping_count: 10
+log:
+  writers: file,stdout
+  logger_level: DEBUG
+  logger_file: log/groupon.log
+  log_format_text: false
+  rollingPolicy: size   # 日志转存策略,选 daily 则根据天进行转存，如果是 size 则根据大小进行转存
+  log_rotate_date: 1    # 转存时间为1天
+  log_rotate_size: 1024 # 转存大小为1MB
+  log_backup_count: 7   # 备份文件的最大个数
