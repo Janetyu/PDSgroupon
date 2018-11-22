@@ -6,12 +6,36 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"PDSgroupon/config"
 	"PDSgroupon/router"
 	"errors"
+	"github.com/spf13/pflag"
+	"github.com/spf13/viper"
 	"time"
 )
 
+var (
+	cfg = pflag.StringP("config", "c", "", "groupon config file path.")
+)
+
 func main() {
+	// 解析命令行参数
+	pflag.Parse()
+
+	// 初始化配置
+	if err := config.Init(*cfg); err != nil {
+		panic(err)
+	}
+
+	// viper热更新配置文件
+	//for {
+	//	fmt.Println(viper.GetString("runmode"))
+	//	time.Sleep(4*time.Second)
+	//}
+
+	// 设置gin模式
+	gin.SetMode(viper.GetString("runmode"))
+
 	// 创建引擎
 	g := gin.New()
 
@@ -34,15 +58,15 @@ func main() {
 		log.Print("The router has been deployed successfully.")
 	}()
 
-	log.Printf("Start to learning the incoming requests on http address: %s", ":8080")
-	log.Printf(http.ListenAndServe(":8080", g).Error())
+	log.Printf("Start to learning the incoming requests on http address: %s", viper.GetString("addr"))
+	log.Printf(http.ListenAndServe(viper.GetString("addr"), g).Error())
 }
 
 // pingServer pings the http server to make sure the router is working.
 func pingServer() error {
-	for i := 0; i < 2; i++ {
+	for i := 0; i < viper.GetInt("max_ping_count"); i++ {
 		// Ping the server by sending a GET request to `/health`.
-		resp, err := http.Get("http://127.0.0.1:8080" + "/sd/health")
+		resp, err := http.Get(viper.GetString("url") + "/sd/health")
 		if err == nil && resp.StatusCode == 200 {
 			return nil
 		}

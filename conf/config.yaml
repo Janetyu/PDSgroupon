@@ -1,0 +1,5 @@
+runmode: debug
+addr: :8080
+name: groupon
+url: http://127.0.0.1:8080
+max_ping_count: 10
