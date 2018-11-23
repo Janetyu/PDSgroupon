@@ -7,6 +7,7 @@ import (
 
 	"PDSgroupon/handler/sd"
 	"PDSgroupon/router/middleware"
+	"PDSgroupon/handler/user"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -22,6 +23,11 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	g.NoRoute(func(c *gin.Context) {
 		c.String(http.StatusNotFound, "The incorrect API route.")
 	})
+
+	u := g.Group("/v1/user")
+	{
+		u.POST("", user.Create)
+	}
 
 	// 健康检查处理器的路由组
 	svcd := g.Group("/sd")
