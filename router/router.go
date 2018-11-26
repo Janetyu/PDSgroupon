@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"PDSgroupon/handler/sd"
-	"PDSgroupon/router/middleware"
 	"PDSgroupon/handler/user"
+	"PDSgroupon/router/middleware"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -26,7 +26,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	u := g.Group("/v1/user")
 	{
-		u.POST("", user.Create)
+		u.POST("/:username", user.Create)
 	}
 
 	// 健康检查处理器的路由组
