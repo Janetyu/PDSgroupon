@@ -65,6 +65,24 @@
 			"revisionTime": "2018-06-25T08:58:08Z"
 		},
 		{
+			"checksumSHA1": "NsLphrlxGA/Ao+hIbk8qsZtXhT4=",
+			"path": "github.com/go-playground/locales",
+			"revision": "f63010822830b6fe52288ee52d5a1151088ce039",
+			"revisionTime": "2018-03-23T16:04:04Z"
+		},
+		{
+			"checksumSHA1": "6xgFcEYVu7ZWVUeK7Q3gPLJ8h4s=",
+			"path": "github.com/go-playground/locales/currency",
+			"revision": "f63010822830b6fe52288ee52d5a1151088ce039",
+			"revisionTime": "2018-03-23T16:04:04Z"
+		},
+		{
+			"checksumSHA1": "hplgY2pZFLa3jQpcSs9wTfjkk88=",
+			"path": "github.com/go-playground/universal-translator",
+			"revision": "71201497bace774495daed26a3874fd339e0b538",
+			"revisionTime": "2017-03-27T19:17:03Z"
+		},
+		{
 			"checksumSHA1": "you3qZXOCVcoDXdkzzqev5xXZLQ=",
 			"path": "github.com/go-sql-driver/mysql",
 			"revision": "361f66ef3b53de1f16b7f2af9ef38a6c159ceb3e",
@@ -75,6 +93,12 @@
 			"path": "github.com/golang/protobuf/proto",
 			"revision": "882cf97a83ad205fd22af574246a3bc647d7a7d2",
 			"revisionTime": "2018-11-20T00:18:57Z"
+		},
+		{
+			"checksumSHA1": "S0g+WwDKHe7XVgDmQBeHrdamRpM=",
+			"path": "github.com/gomodule/redigo/redis",
+			"revision": "e8fc0692a7e26a05b06517348ed466349062eb47",
+			"revisionTime": "2018-10-26T00:15:55Z"
 		},
 		{
 			"checksumSHA1": "vbU86MexL2vuVq6WmMi2BaThDHY=",
@@ -281,10 +305,28 @@
 			"revisionTime": "2018-09-30T04:41:27Z"
 		},
 		{
+			"checksumSHA1": "kLHYIzYvvehYJIC5a8+4a74+a1E=",
+			"path": "github.com/teris-io/shortid",
+			"revision": "771a37caa5cf0c81f585d7b6df4dfc77e0615b5c",
+			"revisionTime": "2017-10-29T13:18:06Z"
+		},
+		{
 			"checksumSHA1": "VRWyUFOEsZObguTamTLitFrwHt4=",
 			"path": "github.com/ugorji/go/codec",
 			"revision": "f8fe4a359c185b03b17daf37779b0729bbf02ac0",
 			"revisionTime": "2018-11-20T15:44:51Z"
+		},
+		{
+			"checksumSHA1": "oCH3J96RWvO8W4xjix47PModpio=",
+			"path": "golang.org/x/crypto/bcrypt",
+			"revision": "0c41d7ab0a0ee717d4590a44bcb987dfd9e183eb",
+			"revisionTime": "2018-10-15T00:23:17Z"
+		},
+		{
+			"checksumSHA1": "oVPHWesOmZ02vLq2fglGvf+AMgk=",
+			"path": "golang.org/x/crypto/blowfish",
+			"revision": "0c41d7ab0a0ee717d4590a44bcb987dfd9e183eb",
+			"revisionTime": "2018-10-15T00:23:17Z"
 		},
 		{
 			"path": "golang.org/x/sys/unix",
@@ -313,6 +355,12 @@
 			"path": "gopkg.in/go-playground/validator.v8",
 			"revision": "5f1438d3fca68893a817e4a66806cea46a9e4ebf",
 			"revisionTime": "2017-07-30T05:02:35Z"
+		},
+		{
+			"checksumSHA1": "rqEzvklugnjp2/vr5OM2Ag34D6A=",
+			"path": "gopkg.in/go-playground/validator.v9",
+			"revision": "1fa3c8d6336562f0a3f95c73593ee2b57ff4da11",
+			"revisionTime": "2018-11-04T14:48:46Z"
 		},
 		{
 			"checksumSHA1": "d3jYBfW+YmOxsa5o8m6XyywVbIo=",

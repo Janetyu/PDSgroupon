@@ -26,7 +26,14 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	u := g.Group("/v1/user")
 	{
-		u.POST("/:username", user.Create)
+		u.POST("", user.Register)
+		u.POST("/vcode", user.CreateVerifiCode)
+		u.POST("/login", user.Login)
+		u.POST("/loginbysms", user.LoginBySms)
+		u.DELETE("/:id", user.Delete)
+		u.PUT("/:id", user.Update)
+		u.GET("", user.List)
+		u.GET("/:username", user.Get)
 	}
 
 	// 健康检查处理器的路由组

@@ -32,6 +32,13 @@ func main() {
 	model.DB.Init()
 	defer model.DB.Close()
 
+	// init redis
+	err := model.RC.Init()
+	if err != nil {
+		panic(err)
+	}
+	defer model.RC.Close()
+
 	// viper热更新配置文件
 	//for {
 	//	fmt.Println(viper.GetString("runmode"))
