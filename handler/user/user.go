@@ -36,6 +36,24 @@ type LoginBySmsRequest struct {
 	Vcode    string `json:"vcode"`
 }
 
+type LoginResponse struct {
+	Id       uint64 `json:"id"`
+	Username string `json:"username"`
+	RoleId   int64  `json:"role_id"`
+}
+
+type GetOneResponse struct {
+	Id        uint64  `json:"id"`
+	Username  string  `json:"username"`
+	NickName  string  `json:"nick_name"`
+	Address   string  `json:"address"`
+	Name      string  `json:"name"`
+	HeadImage string  `json:"head_image"`
+	Sex       string  `json:"sex"`
+	Account   float64 `json:"account"`
+	RoleId    int64   `json:"role_id"`
+}
+
 type ListRequest struct {
 	Username string `json:"username"`
 	Offset   int    `json:"offset"`
@@ -75,6 +93,14 @@ func (r *CreateRequest) checkParam() error {
 		return errno.New(errno.ErrValidation, nil).Add("password is empty.")
 	}
 
+	return nil
+}
+
+func checkPwdLen(pwd string) error {
+	length := len(pwd)
+	if length < 6 || length > 16 {
+		return errno.New(errno.ErrValidation, nil).Add("password isn't enough len.")
+	}
 	return nil
 }
 

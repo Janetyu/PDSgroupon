@@ -1,7 +1,7 @@
 runmode: debug
-addr: :8080
+addr: :80
 name: groupon
-url: http://127.0.0.1:8080
+url: http://127.0.0.1:80
 max_ping_count: 10
 log:
   writers: file,stdout

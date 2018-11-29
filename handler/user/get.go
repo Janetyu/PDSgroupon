@@ -1,6 +1,8 @@
 package user
 
 import (
+	"strconv"
+
 	"github.com/gin-gonic/gin"
 
 	. "PDSgroupon/handler"
@@ -9,17 +11,29 @@ import (
 	"github.com/lexkong/log"
 )
 
-// Get gets an user by the user identifier.
+// Get gets an user by the user id.
 func Get(c *gin.Context) {
-	username := c.Param("username")
+	id, _ := strconv.Atoi(c.Param("id"))
 	// Get the user by the `username` from the database.
-	user, err := model.GetUser(username)
+	user, err := model.GetUserById(uint64(id))
 	if err != nil {
 		SendResponse(c, errno.ErrUserNotFound, nil)
 		return
 	}
 
-	SendResponse(c, nil, user)
+	rsp := GetOneResponse{
+		Id:        user.Id,
+		Username:  user.Username,
+		NickName:  user.NickName,
+		Address:   user.Address,
+		Name:      user.Name,
+		HeadImage: user.HeadImage,
+		Sex:       user.Sex,
+		Account:   user.Account,
+		RoleId:    user.RoleId,
+	}
+
+	SendResponse(c, nil, rsp)
 }
 
 // 手机号+密码登录
@@ -42,8 +56,10 @@ func Login(c *gin.Context) {
 		return
 	}
 
-	rsp := CreateResponse{
+	rsp := LoginResponse{
+		Id:       user.Id,
 		Username: user.Username,
+		RoleId:   user.RoleId,
 	}
 
 	SendResponse(c, nil, rsp)
@@ -74,8 +90,10 @@ func LoginBySms(c *gin.Context) {
 		log.Errorf(err, "The redis occurred error while del key: %s")
 	}
 
-	rsp := CreateResponse{
+	rsp := LoginResponse{
+		Id:       user.Id,
 		Username: user.Username,
+		RoleId:   user.RoleId,
 	}
 
 	SendResponse(c, nil, rsp)

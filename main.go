@@ -84,8 +84,8 @@ func pingServer() error {
 		}
 
 		// Sleep for a second to continue the next ping.
-		log.Info("Waiting for the router, retry in 1 second.")
-		time.Sleep(time.Second)
+		log.Info("Waiting for the router, retry in 60 second.")
+		time.Sleep(60 * time.Second)
 	}
 	return errors.New("Cannot connect to the router.")
 }

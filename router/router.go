@@ -6,6 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 
 	"PDSgroupon/handler/sd"
+	"PDSgroupon/handler/upload"
 	"PDSgroupon/handler/user"
 	"PDSgroupon/router/middleware"
 )
@@ -26,14 +27,16 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	u := g.Group("/v1/user")
 	{
-		u.POST("", user.Register)
+		u.POST("/", user.Register)
 		u.POST("/vcode", user.CreateVerifiCode)
 		u.POST("/login", user.Login)
 		u.POST("/loginbysms", user.LoginBySms)
 		u.DELETE("/:id", user.Delete)
-		u.PUT("/:id", user.Update)
-		u.GET("", user.List)
-		u.GET("/:username", user.Get)
+		u.PUT("/update/:id", user.Update)
+		u.PUT("/resetpwd/:id", user.ResetPwd)
+		u.PUT("/upload/:id", upload.SingleUpload)
+		u.GET("/", user.List)
+		u.GET("/:id", user.Get)
 	}
 
 	// 健康检查处理器的路由组
@@ -44,6 +47,9 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		svcd.GET("/cpu", sd.CPUCheck)
 		svcd.GET("/ram", sd.RAMCheck)
 	}
+
+	// 为 multipart 表单设置一个较低的内存限制（默认是 32 MiB）
+	g.MaxMultipartMemory = 2 << 20 // 2 MB
 
 	return g
 }

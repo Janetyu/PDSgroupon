@@ -12,6 +12,7 @@ import (
 
 	"github.com/gin-gonic/gin"
 	"github.com/teris-io/shortid"
+	"os"
 )
 
 func GenShortId() (string, error) {
@@ -53,4 +54,22 @@ func UniqueId() string {
 		return ""
 	}
 	return GetMd5String(base64.URLEncoding.EncodeToString(b))
+}
+
+func UploadFile(uploadDir, ext string) (string, error) {
+
+	if err := os.MkdirAll(uploadDir, 777); err != nil {
+		return "", err
+	}
+
+	//构造文件名称
+	rand.Seed(time.Now().UnixNano())
+	randNum := fmt.Sprintf("%d", rand.Intn(9999)+1000)
+	hashName := md5.Sum([]byte(time.Now().Format("2006_01_02_15_04_05_") + randNum))
+
+	fileName := fmt.Sprintf("%x", hashName) + ext
+
+	fpath := uploadDir + fileName
+
+	return fpath, nil
 }

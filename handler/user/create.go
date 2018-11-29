@@ -33,6 +33,7 @@ func Register(c *gin.Context) {
 	u := model.UserModel{
 		Username: r.Username,
 		Password: r.Password,
+		RoleId:   1,
 	}
 
 	// 自定义验证函数

@@ -19,4 +19,8 @@ var (
 	ErrPasswordIncorrect = &Errno{Code: 20104, Message: "The password was incorrect."}
 	ErrVcodeNotFound     = &Errno{Code: 20105, Message: "The vcode was not found."}
 	ErrUserHasRegist     = &Errno{Code: 20106, Message: "The phone was used to registed"}
+
+	// upload errors
+	ErrUploadExt  = &Errno{Code: 20201, Message: "The file ext invalid."}
+	ErrUploadFail = &Errno{Code: 20202, Message: "Error occurred while upload file."}
 )

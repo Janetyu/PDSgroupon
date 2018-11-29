@@ -12,8 +12,15 @@ import (
 // User represents a registered user.
 type UserModel struct {
 	BaseModel
-	Username string `json:"username" gorm:"column:phonenum;not null" binding:"required" validate:"min=1,max=32"`
-	Password string `json:"password" gorm:"column:password;not null" binding:"required" validate:"min=5,max=128"`
+	Username  string  `json:"username" gorm:"column:phonenum;unique;not null" binding:"required" validate:"min=11,max=11"`
+	Password  string  `json:"password" gorm:"column:password;not null" binding:"required" validate:"min=6,max=128"`
+	NickName  string  `json:"nick_name" gorm:"column:nick_name"`
+	Address   string  `json:"address" gorm:"column:address"`
+	Name      string  `json:"name" gorm:"column:name"`
+	HeadImage string  `json:"head_image" gorm:"column:head_image"`
+	Sex       string  `json:"sex" gorm:"column:sex;default:'男'"`
+	Account   float64 `json:"account" gorm:"column:account;default:0"`
+	RoleId    int64   `json:"role_id" gorm:"column:role_id"`
 }
 
 type UserPhone struct {
@@ -45,6 +52,12 @@ func (u *UserModel) Update() error {
 func GetUser(username string) (*UserModel, error) {
 	u := &UserModel{}
 	d := DB.Self.Where("phonenum = ?", username).First(&u)
+	return u, d.Error
+}
+
+func GetUserById(id uint64) (*UserModel, error) {
+	u := &UserModel{}
+	d := DB.Self.Where("id = ?", id).First(&u)
 	return u, d.Error
 }
 
