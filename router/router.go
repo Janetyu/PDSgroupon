@@ -16,9 +16,9 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	// 为 multipart 表单设置一个较低的内存限制（默认是 32 MiB）
 	g.MaxMultipartMemory = 2 << 20 // 2 MB
 
-	g.Static("/assets", "./assets")
-	g.StaticFS("/more_static", http.Dir("my_file_system"))
-	g.StaticFile("/favicon.ico", "./resources/favicon.ico")
+	g.Static("/static", "./static")
+	g.StaticFS("/more_static", http.Dir("static"))
+	//g.StaticFile("/favicon.ico", "./resources/favicon.ico")
 
 	// 中间件函数
 	g.Use(gin.Recovery())     // 用于panic时恢复API服务器
@@ -32,12 +32,17 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		c.String(http.StatusNotFound, "The incorrect API route.")
 	})
 
-	u := g.Group("/v1/user")
+	global := g.Group("/v1/global")
 	{
-		u.POST("/", user.Register)
-		u.POST("/vcode", user.CreateVerifiCode)
-		u.POST("/login", user.Login)
-		u.POST("/loginbysms", user.LoginBySms)
+		global.POST("/userlogin", user.UserLogin)
+		global.POST("/userloginbysms", user.LoginBySms)
+		global.POST("/vcode", user.CreateVerifiCode)
+		global.POST("/register", user.Register)
+	}
+
+	u := g.Group("/v1/user")
+	u.Use(middleware.AuthMiddleware())
+	{
 		u.DELETE("/:id", user.Delete)
 		u.PUT("/update/:id", user.Update)
 		u.PUT("/resetpwd/:id", user.ResetPwd)

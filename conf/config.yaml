@@ -3,6 +3,7 @@ addr: :80
 name: groupon
 url: http://127.0.0.1:80
 max_ping_count: 10
+jwt_secret: Rtg8BPKNEf2mB4mgvKONGPZZQSaJWNLijxR42qRgq0iBb5
 log:
   writers: file,stdout
   logger_level: DEBUG

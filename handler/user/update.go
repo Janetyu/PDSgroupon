@@ -2,6 +2,7 @@ package user
 
 import (
 	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
@@ -11,7 +12,6 @@ import (
 	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
 	"PDSgroupon/util"
-	"time"
 )
 
 // Update update a exist user account info.
