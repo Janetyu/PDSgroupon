@@ -88,13 +88,25 @@ func ResetPwd(c *gin.Context) {
 	}
 
 	pwd := c.PostForm("password")
+	newpwd := c.PostForm("newpassword")
 
 	if err := checkPwdLen(pwd); err != nil {
 		SendResponse(c, err, nil)
 		return
 	}
 
-	umodel.Password = pwd
+	if err := checkPwdLen(newpwd); err != nil {
+		SendResponse(c, err, nil)
+		return
+	}
+
+	if err := umodel.Compare(pwd);err != nil {
+		SendResponse(c, errno.ErrPasswordIncorrect, nil)
+		return
+	}
+
+	umodel.Password = newpwd
+
 
 	if err := umodel.Encrypt(); err != nil {
 		SendResponse(c, errno.ErrEncrypt, nil)
