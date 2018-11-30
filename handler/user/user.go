@@ -37,10 +37,10 @@ type LoginBySmsRequest struct {
 }
 
 type LoginResponse struct {
-	Id       uint64 `json:"id"`
-	Username string `json:"username"`
+	Id        uint64 `json:"id"`
+	Username  string `json:"username"`
 	HeadImage string `json:"head_image"`
-	RoleId   int64  `json:"role_id"`
+	RoleId    int64  `json:"role_id"`
 }
 
 type GetOneResponse struct {

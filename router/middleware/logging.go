@@ -2,10 +2,10 @@ package middleware
 
 import (
 	"bytes"
-	"time"
-	"regexp"
-	"io/ioutil"
 	"encoding/json"
+	"io/ioutil"
+	"regexp"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
@@ -20,7 +20,7 @@ type bodyLogWriter struct {
 	body *bytes.Buffer
 }
 
-func (w bodyLogWriter)Write(b []byte) (int, error) {
+func (w bodyLogWriter) Write(b []byte) (int, error) {
 	w.body.Write(b)
 	return w.ResponseWriter.Write(b)
 }
@@ -56,8 +56,6 @@ func Logging() gin.HandlerFunc {
 		// Restore the io.ReadCloser to its original state 将io.ReadCloser恢复到其原始状态
 		c.Request.Body = ioutil.NopCloser(bytes.NewBuffer(bodyBytes))
 
-
-
 		// The basic informations.
 		method := c.Request.Method
 		ip := c.ClientIP()
@@ -91,6 +89,7 @@ func Logging() gin.HandlerFunc {
 			message = response.Message
 		}
 
+		// pad Go的字符串左右填充
 		log.Infof("%-13s | %-12s | %s %s | {code: %d, message: %s}", latency, ip, pad.Right(method, 5, ""), path, code, message)
 	}
 }

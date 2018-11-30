@@ -57,10 +57,10 @@ func Login(c *gin.Context) {
 	}
 
 	rsp := LoginResponse{
-		Id:       user.Id,
-		Username: user.Username,
+		Id:        user.Id,
+		Username:  user.Username,
 		HeadImage: user.HeadImage,
-		RoleId:   user.RoleId,
+		RoleId:    user.RoleId,
 	}
 
 	SendResponse(c, nil, rsp)
@@ -92,10 +92,10 @@ func LoginBySms(c *gin.Context) {
 	}
 
 	rsp := LoginResponse{
-		Id:       user.Id,
-		Username: user.Username,
+		Id:        user.Id,
+		Username:  user.Username,
 		HeadImage: user.HeadImage,
-		RoleId:   user.RoleId,
+		RoleId:    user.RoleId,
 	}
 
 	SendResponse(c, nil, rsp)
