@@ -13,6 +13,7 @@ import (
 	"PDSgroupon/config"
 	"PDSgroupon/model"
 	"PDSgroupon/router"
+	"PDSgroupon/router/middleware"
 )
 
 var (
@@ -51,15 +52,13 @@ func main() {
 	// 创建引擎
 	g := gin.New()
 
-	// gin 中间件
-	middlewares := []gin.HandlerFunc{}
-
 	// 路由加载
 	router.Load(
 		// gin 核心引擎
 		g,
 		// 中间件列表加载
-		middlewares...,
+		middleware.RequestId(),
+		middleware.Logging(),
 	)
 
 	// Ping the server to make sure the router is working.

@@ -8,4 +8,4 @@
 - 日志管理： lexkong/log
 - 数据库操作： jinzhu/gorm
 - 数据库驱动： jinzhu/gorm/dialects/mysql
-- 工具类： teris-io/shortid
+- 工具类： teris-io/shortid、satori/go.uuid、willf/pad

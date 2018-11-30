@@ -13,6 +13,13 @@ import (
 
 // 加载 中间件，路由器，处理器等
 func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
+	// 为 multipart 表单设置一个较低的内存限制（默认是 32 MiB）
+	g.MaxMultipartMemory = 2 << 20 // 2 MB
+
+	g.Static("/assets", "./assets")
+	g.StaticFS("/more_static", http.Dir("my_file_system"))
+	g.StaticFile("/favicon.ico", "./resources/favicon.ico")
+
 	// 中间件函数
 	g.Use(gin.Recovery())     // 用于panic时恢复API服务器
 	g.Use(middleware.NoCache) // 强制浏览器不使用缓存
@@ -48,8 +55,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		svcd.GET("/ram", sd.RAMCheck)
 	}
 
-	// 为 multipart 表单设置一个较低的内存限制（默认是 32 MiB）
-	g.MaxMultipartMemory = 2 << 20 // 2 MB
+
 
 	return g
 }

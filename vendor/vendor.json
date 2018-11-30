@@ -239,6 +239,12 @@
 			"revisionTime": "2018-09-30T20:58:32Z"
 		},
 		{
+			"checksumSHA1": "3JBPxvZn52LORHX9F382xpkt1sA=",
+			"path": "github.com/satori/go.uuid",
+			"revision": "b2ce2384e17bbe0c6d34077efa39dbab3e09123b",
+			"revisionTime": "2018-10-28T12:50:25Z"
+		},
+		{
 			"checksumSHA1": "pRQV39yW3LaGvFpHNrKBE8ecvmc=",
 			"path": "github.com/shirou/gopsutil/cpu",
 			"revision": "a11c78ba2c13c5b1ee59c53296ba35f92f0ce658",
@@ -315,6 +321,12 @@
 			"path": "github.com/ugorji/go/codec",
 			"revision": "f8fe4a359c185b03b17daf37779b0729bbf02ac0",
 			"revisionTime": "2018-11-20T15:44:51Z"
+		},
+		{
+			"checksumSHA1": "cchmBaJT0OeGugMNtlYbeG8Fxro=",
+			"path": "github.com/willf/pad",
+			"revision": "b3d7806010228b1a954b4d9c4ee4cf6cb476b063",
+			"revisionTime": "2016-03-31T13:10:08Z"
 		},
 		{
 			"checksumSHA1": "oCH3J96RWvO8W4xjix47PModpio=",

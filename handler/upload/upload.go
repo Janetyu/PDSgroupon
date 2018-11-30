@@ -18,7 +18,6 @@ import (
 
 // 单文件上传
 func SingleUpload(c *gin.Context) {
-	c.Set("X-Request-Id", util.UniqueId())
 	log.Info("SingleUpload function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	// Get the user id from the url parameter.

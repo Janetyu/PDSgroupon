@@ -14,7 +14,7 @@ import (
 // Create creates a new user account.
 func Register(c *gin.Context) {
 	// X-Request-Id ,X-Correlation-Id 标识一个客户端和服务端的请求
-	c.Set("X-Request-Id", util.UniqueId())
+	//c.Set("X-Request-Id", util.UniqueId())
 	log.Info("User Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 	var r CreateRequest
 	if err := c.Bind(&r); err != nil {
@@ -84,7 +84,6 @@ func Register(c *gin.Context) {
 
 // 创建并发送验证码，保存到redis数据库中
 func CreateVerifiCode(c *gin.Context) {
-	c.Set("X-Request-Id", util.UniqueId())
 	log.Info("CreateVerifiCode function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	var p PhoneRequest

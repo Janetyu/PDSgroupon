@@ -16,7 +16,6 @@ import (
 
 // Update update a exist user account info.
 func Update(c *gin.Context) {
-	c.Set("X-Request-Id", util.UniqueId())
 	log.Info("Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	// Get the user id from the url parameter.
@@ -75,7 +74,6 @@ func Update(c *gin.Context) {
 
 // 重置密码
 func ResetPwd(c *gin.Context) {
-	c.Set("X-Request-Id", util.UniqueId())
 	log.Info("ResetPwd function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	// Get the user id from the url parameter.
