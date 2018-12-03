@@ -19,6 +19,7 @@ var (
 type Context struct {
 	ID       uint64
 	Username string
+	RoleId	 int64
 }
 
 // secretFunc validates the secret format. 检测 secret 的格式
@@ -38,7 +39,8 @@ func secretFunc(secret string) jwt.Keyfunc {
 func Parse(tokenString string, secret string) (*Context, error) {
 	ctx := &Context{}
 
-	// Parse the token.
+	// Parse the token. 传入 token 和 secret ，secretFunc 匹配加密算法
+	// jwt.Parse 用于解析和验证 token 的合法性
 	token, err := jwt.Parse(tokenString, secretFunc(secret))
 
 	// Parse error.
@@ -49,6 +51,7 @@ func Parse(tokenString string, secret string) (*Context, error) {
 	} else if claims, ok := token.Claims.(jwt.MapClaims); ok && token.Valid {
 		ctx.ID = uint64(claims["id"].(float64))
 		ctx.Username = claims["username"].(string)
+		ctx.RoleId = int64(claims["roleid"].(float64))
 		return ctx, nil
 
 		// Other errors.
@@ -84,8 +87,9 @@ func Sign(ctx *gin.Context, c Context, secret string) (tokenString string, err e
 	}
 	// The token content.
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"id":       c.ID,
+		"id":		 c.ID,
 		"username": c.Username,
+		"roleid": 	 c.RoleId,
 		"nbf":      time.Now().Unix(), // JWT Token 生效时间
 		"iat":      time.Now().Unix(), // JWT Token 签发时间
 	})

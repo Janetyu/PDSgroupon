@@ -31,7 +31,7 @@ func UserLogin(c *gin.Context) {
 	}
 
 	// Sign the json web token.
-	t, err := token.Sign(c, token.Context{ID: user.Id, Username: user.Username}, "")
+	t, err := token.Sign(c, token.Context{ID: user.Id, Username: user.Username,RoleId: user.RoleId}, "")
 	if err != nil {
 		SendResponse(c, errno.ErrToken, nil)
 		return
@@ -74,7 +74,7 @@ func LoginBySms(c *gin.Context) {
 	}
 
 	// Sign the json web token.
-	t, err := token.Sign(c, token.Context{ID: user.Id, Username: user.Username}, "")
+	t, err := token.Sign(c, token.Context{ID: user.Id, Username: user.Username,RoleId: user.RoleId}, "")
 	if err != nil {
 		SendResponse(c, errno.ErrToken, nil)
 		return
