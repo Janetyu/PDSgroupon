@@ -45,12 +45,6 @@ type GetOneResponse struct {
 	RoleId    int64   `json:"role_id"`
 }
 
-type ListRequest struct {
-	Username string `json:"username"`
-	Offset   int    `json:"offset"`
-	Limit    int    `json:"limit"`
-}
-
 type ListResponse struct {
 	TotalCount uint64            `json:"totalCount"`
 	UserList   []*model.UserInfo `json:"userList"`

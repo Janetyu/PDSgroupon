@@ -4,19 +4,27 @@ import (
 	"github.com/gin-gonic/gin"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/pkg/errno"
 	"PDSgroupon/service"
+	"strconv"
+	"PDSgroupon/pkg/errno"
 )
 
 // List list the users in the database.
 func List(c *gin.Context) {
-	var r ListRequest
-	if err := c.Bind(&r); err != nil {
-		SendResponse(c, errno.ErrBind, nil)
+	offset, err := strconv.Atoi(c.DefaultQuery("offset", "1"))
+
+	if err != nil {
+		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
-	infos, count, err := service.ListUser(r.Username, r.Offset, r.Limit)
+	limit, err := strconv.Atoi(c.DefaultQuery("limit", "0"))
+	if err != nil {
+		SendResponse(c, errno.ErrValidation, nil)
+		return
+	}
+
+	infos, count, err := service.ListUser(offset, limit)
 	if err != nil {
 		SendResponse(c, err, nil)
 		return

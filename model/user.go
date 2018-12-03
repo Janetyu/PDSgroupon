@@ -62,7 +62,27 @@ func GetUserById(id uint64) (*UserModel, error) {
 }
 
 // ListUser List all users
-func ListUser(username string, offset, limit int) ([]*UserModel, uint64, error) {
+func ListUser(offset, limit int) ([]*UserModel, uint64, error) {
+	if limit == 0 {
+		limit = constvar.DefaultLimit
+	}
+
+	users := make([]*UserModel, 0)
+	var count uint64
+
+	if err := DB.Self.Model(&UserModel{}).Count(&count).Error; err != nil {
+		return users, count, err
+	}
+
+	if err := DB.Self.Offset(offset - 1).Limit(limit).Order("id desc").Find(&users).Error; err != nil {
+		return users, count, err
+	}
+
+	return users, count, nil
+}
+
+// ListUser List all users
+func ListUser2(username string, offset, limit int) ([]*UserModel, uint64, error) {
 	if limit == 0 {
 		limit = constvar.DefaultLimit
 	}

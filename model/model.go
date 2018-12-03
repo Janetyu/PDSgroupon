@@ -11,7 +11,7 @@ type BaseModel struct {
 	UpdatedAt time.Time `gorm:"column:updatedAt" json:"-"`
 }
 
-type UserInfo struct {
+type UserInfo2 struct {
 	Id        uint64 `json:"id"`
 	Username  string `json:"username"`
 	SayHello  string `json:"sayHello"`
@@ -20,9 +20,28 @@ type UserInfo struct {
 	UpdatedAt string `json:"updatedAt"`
 }
 
+type UserInfo struct {
+	Id        uint64 `json:"id"`
+	Username  string  `json:"username"`
+	NickName  string  `json:"nick_name"`
+	Address   string  `json:"address"`
+	Name      string  `json:"name"`
+	HeadImage string  `json:"head_image"`
+	Sex       string  `json:"sex"`
+	Account   float64 `json:"account"`
+	RoleId    int64   `json:"role_id"`
+	CreatedAt string `json:"createdAt"`
+	UpdatedAt string `json:"updatedAt"`
+}
+
 type UserList struct {
 	Lock  *sync.Mutex
 	IdMap map[uint64]*UserInfo
+}
+
+type UserList2 struct {
+	Lock  *sync.Mutex
+	IdMap map[uint64]*UserInfo2
 }
 
 // Token represents a JSON web token.
