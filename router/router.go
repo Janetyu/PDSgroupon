@@ -10,6 +10,7 @@ import (
 	"PDSgroupon/handler/user"
 	"PDSgroupon/router/middleware"
 	"PDSgroupon/handler/admin"
+	"PDSgroupon/handler/admin/permission"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -62,6 +63,10 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		a.GET("/userlist/", user.List)
 		a.DELETE("/userdel/:id", user.Delete)
 		a.PUT("/userupd/:id", user.Update)
+
+		a.POST("/roleadd",permission.Create)
+		a.GET("/rolelist",permission.List)
+		a.PUT("/roleupd/:id",permission.Update)
 	}
 
 	// 健康检查处理器的路由组

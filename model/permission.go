@@ -2,12 +2,14 @@ package model
 
 import (
 	"PDSgroupon/pkg/constvar"
-	"gopkg.in/go-playground/validator.v9"
+	"time"
 )
 
 type PermissionModel struct {
-	BaseModel
-	RoleName string `json:"role" gorm:"column:"`
+	Id        uint64    `gorm:"primary_key;AUTO_INCREMENT;column:id" json:"id"`
+	RoleName string `json:"role_name" gorm:"column:role_name"`
+	CreatedAt time.Time `gorm:"column:createdAt" json:"createdAt"`
+	UpdatedAt time.Time `gorm:"column:updatedAt" json:"updatedAt"`
 }
 
 func (p *PermissionModel)TableName() string {
@@ -20,12 +22,18 @@ func (p *PermissionModel)Create() error {
 
 func DeletePermission(id uint64) error {
 	permission := PermissionModel{}
-	permission.BaseModel.Id = id
+	permission.Id = id
 	return DB.Self.Delete(&permission).Error
 }
 
 func (p *PermissionModel)Update() error {
 	return DB.Self.Save(p).Error
+}
+
+func GetPermission(roleName string) (*PermissionModel, error) {
+	p := &PermissionModel{}
+	d := DB.Self.Where("role_name = ?", roleName).First(&p)
+	return p,d.Error
 }
 
 func GetPermissionById(id uint64) (*PermissionModel, error) {
@@ -62,10 +70,4 @@ func ListPermissionAll() ([]*PermissionModel, error) {
 	}
 
 	return permissions,nil
-}
-
-
-func (p *PermissionModel) Validate() error {
-	validate := validator.New()
-	return validate.Struct(p)
 }

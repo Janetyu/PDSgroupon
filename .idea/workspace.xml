@@ -2,39 +2,14 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="243dab07-9afb-4b3f-88e8-b65a634cea58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/handler/admin/admin.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/banner/create.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/banner/delete.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/banner/get.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/banner/list.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/banner/update.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/category/create.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/category/delete.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/category/list.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/category/update.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/create.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/get.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/list.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/login.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/permission/create.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/permission/list.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/permission/permission.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/permission/update.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/admin/update.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/merchants/get.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/merchants/list.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/handler/merchants/update.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/admin.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/banner.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/category.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/merchants.go" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/model/permission.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/model.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/model.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/model/user.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/user.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/admin/permission/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/admin/permission/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/admin/permission/list.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/admin/permission/list.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/admin/permission/permission.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/admin/permission/permission.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/admin/permission/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/admin/permission/update.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/permission.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/permission.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/errno/code.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/errno/code.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/service/service.go" beforeDir="false" afterPath="$PROJECT_DIR$/service/service.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -46,12 +21,12 @@
     <session id="2070847417">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="33" />
+          <entry key="project.closed" value="34" />
           <entry key="project.open.time.0" value="7" />
           <entry key="project.open.time.1" value="8" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.14" value="2" />
-          <entry key="project.open.time.15" value="1" />
+          <entry key="project.open.time.15" value="2" />
           <entry key="project.open.time.16" value="3" />
           <entry key="project.open.time.17" value="2" />
           <entry key="project.open.time.18" value="3" />
@@ -60,13 +35,13 @@
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.3" value="1" />
           <entry key="project.open.time.5" value="1" />
-          <entry key="project.opened" value="34" />
+          <entry key="project.opened" value="35" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="gitignore" value="1" />
-          <entry key="go" value="328" />
+          <entry key="go" value="347" />
           <entry key="json" value="2" />
           <entry key="log" value="8" />
           <entry key="md" value="9" />
@@ -76,7 +51,7 @@
       <usages-collector id="statistics.file.types.open">
         <counts>
           <entry key="Git file" value="1" />
-          <entry key="Go" value="328" />
+          <entry key="Go" value="347" />
           <entry key="JSON" value="2" />
           <entry key="Log" value="3" />
           <entry key="Markdown" value="9" />
@@ -86,14 +61,14 @@
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
-          <entry key="go" value="16157" />
+          <entry key="go" value="16683" />
           <entry key="md" value="138" />
           <entry key="yaml" value="643" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="16157" />
+          <entry key="Go" value="16683" />
           <entry key="Markdown" value="138" />
           <entry key="YAML" value="643" />
         </counts>
@@ -112,19 +87,22 @@
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="375">
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/model/admin.go">
+        <entry file="file://$PROJECT_DIR$/pkg/errno/code.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="512">
-              <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+            <state relative-caret-position="341">
+              <caret line="27" column="70" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/pkg/errno/code.go">
+        <entry file="file://$PROJECT_DIR$/handler/admin/permission/permission.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
+            <state relative-caret-position="209">
+              <caret line="11" selection-start-line="11" selection-end-line="16" selection-end-column="1" />
+              <folding>
+                <element signature="e#20#58#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -132,53 +110,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/router/router.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1007">
-              <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/admin/permission/create.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="95">
-              <caret line="5" column="91" selection-start-line="5" selection-start-column="91" selection-end-line="5" selection-end-column="91" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/admin/create.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/admin/admin.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="7" selection-start-line="7" selection-end-line="10" selection-end-column="1" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/admin/list.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
-              <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+            <state relative-caret-position="248">
+              <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/handler/admin/permission/permission.go">
+        <entry file="file://$PROJECT_DIR$/handler/admin/permission/update.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+            <state relative-caret-position="380">
+              <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+              <folding>
+                <element signature="e#20#224#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/handler/user/update.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="171">
+              <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/handler/admin/permission/list.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="494">
+              <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
             </state>
           </provider>
         </entry>
@@ -221,8 +184,6 @@
         <option value="$PROJECT_DIR$/handler/user/login.go" />
         <option value="$PROJECT_DIR$/pkg/token/token.go" />
         <option value="$PROJECT_DIR$/handler/admin/permission/get.go" />
-        <option value="$PROJECT_DIR$/handler/admin/permission/list.go" />
-        <option value="$PROJECT_DIR$/handler/admin/permission/update.go" />
         <option value="$PROJECT_DIR$/handler/admin/category/create.go" />
         <option value="$PROJECT_DIR$/handler/admin/category/list.go" />
         <option value="$PROJECT_DIR$/handler/admin/category/update.go" />
@@ -244,9 +205,7 @@
         <option value="$PROJECT_DIR$/model/user.go" />
         <option value="$PROJECT_DIR$/model/category.go" />
         <option value="$PROJECT_DIR$/model/banner.go" />
-        <option value="$PROJECT_DIR$/model/permission.go" />
         <option value="$PROJECT_DIR$/handler/admin/create.go" />
-        <option value="$PROJECT_DIR$/pkg/errno/code.go" />
         <option value="$PROJECT_DIR$/handler/admin/login.go" />
         <option value="$PROJECT_DIR$/handler/admin/update.go" />
         <option value="$PROJECT_DIR$/handler/admin/get.go" />
@@ -254,9 +213,13 @@
         <option value="$PROJECT_DIR$/model/admin.go" />
         <option value="$PROJECT_DIR$/service/service.go" />
         <option value="$PROJECT_DIR$/handler/admin/list.go" />
-        <option value="$PROJECT_DIR$/router/router.go" />
         <option value="$PROJECT_DIR$/handler/admin/permission/create.go" />
+        <option value="$PROJECT_DIR$/handler/admin/permission/list.go" />
         <option value="$PROJECT_DIR$/handler/admin/permission/permission.go" />
+        <option value="$PROJECT_DIR$/model/permission.go" />
+        <option value="$PROJECT_DIR$/router/router.go" />
+        <option value="$PROJECT_DIR$/pkg/errno/code.go" />
+        <option value="$PROJECT_DIR$/handler/admin/permission/update.go" />
       </list>
     </option>
   </component>
@@ -328,6 +291,12 @@
               <item name="PDSgroupon" type="b2602c69:ProjectViewProjectNode" />
               <item name="PDSgroupon" type="462c0819:PsiDirectoryNode" />
               <item name="pkg" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PDSgroupon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PDSgroupon" type="462c0819:PsiDirectoryNode" />
+              <item name="pkg" type="462c0819:PsiDirectoryNode" />
+              <item name="errno" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
               <item name="PDSgroupon" type="b2602c69:ProjectViewProjectNode" />
@@ -406,7 +375,7 @@
     <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49751243" visible="true" weight="0.32039574" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49751243" visible="true" weight="0.32648402" />
       <window_info id="Structure" order="1" sideWeight="0.50248754" side_tool="true" weight="0.2678843" />
       <window_info id="Favorites" order="2" sideWeight="0.50082916" side_tool="true" weight="0.26331812" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -479,13 +448,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/handler/admin/category/list.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="16" selection-start-column="16" selection-end-column="16" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handler/admin/category/update.go">
       <provider selected="true" editor-type-id="text-editor">
         <state>
@@ -622,13 +584,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/admin/permission/update.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="18" selection-start-column="18" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/vendor/github.com/jinzhu/gorm/callback.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
@@ -657,24 +612,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/model/permission.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="380">
-          <caret line="61" column="5" lean-forward="true" selection-start-line="61" selection-start-column="5" selection-end-line="61" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/model/category.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-628">
           <caret line="14" column="1" lean-forward="true" selection-start-line="14" selection-start-column="1" selection-end-line="14" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/model.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
         </state>
       </provider>
     </entry>
@@ -706,24 +647,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/user/update.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-646">
-          <caret line="86" lean-forward="true" selection-start-line="86" selection-end-line="86" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handler/user/get.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="95">
           <caret line="13" selection-start-line="13" selection-end-line="36" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/admin/update.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="420">
-          <caret line="29" column="39" lean-forward="true" selection-start-line="29" selection-start-column="39" selection-end-line="29" selection-end-column="39" />
         </state>
       </provider>
     </entry>
@@ -762,59 +689,110 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/handler/admin/create.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="23" column="21" selection-start-line="23" selection-start-column="21" selection-end-line="23" selection-end-column="21" />
+          <folding>
+            <element signature="e#15#199#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/model/admin.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="512">
-          <caret line="64" column="5" selection-start-line="64" selection-start-column="5" selection-end-line="64" selection-end-column="5" />
+        <state relative-caret-position="95">
+          <caret line="10" column="9" selection-start-line="10" selection-start-column="9" selection-end-line="10" selection-end-column="9" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/errno/code.go">
+    <entry file="file://$PROJECT_DIR$/handler/admin/update.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="4" selection-start-line="15" selection-start-column="4" selection-end-line="15" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/router/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1007">
-          <caret line="63" column="42" selection-start-line="63" selection-start-column="42" selection-end-line="63" selection-end-column="42" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/admin/list.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="21" column="19" selection-start-line="21" selection-start-column="19" selection-end-line="21" selection-end-column="19" />
+        <state relative-caret-position="-627">
+          <caret line="20" column="45" lean-forward="true" selection-start-line="20" selection-start-column="45" selection-end-line="20" selection-end-column="45" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/handler/admin/permission/create.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="95">
-          <caret line="5" column="91" selection-start-line="5" selection-start-column="91" selection-end-line="5" selection-end-column="91" />
+        <state relative-caret-position="817">
+          <caret line="52" column="29" lean-forward="true" selection-start-line="52" selection-start-column="29" selection-end-line="52" selection-end-column="29" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/handler/admin/create.go">
+    <entry file="file://$PROJECT_DIR$/handler/admin/list.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="17" column="13" selection-start-line="17" selection-start-column="13" selection-end-line="17" selection-end-column="13" />
+        <state relative-caret-position="343">
+          <caret line="32" column="29" selection-start-line="32" selection-start-column="29" selection-end-line="32" selection-end-column="29" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/handler/admin/admin.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="7" selection-start-line="7" selection-end-line="10" selection-end-column="1" />
+        <state relative-caret-position="475">
+          <caret line="28" column="26" selection-start-line="28" selection-start-column="26" selection-end-line="28" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/admin/permission/list.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="34" column="31" selection-start-line="34" selection-start-column="31" selection-end-line="34" selection-end-column="31" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/model.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="57">
+          <caret line="5" lean-forward="true" selection-start-line="5" selection-end-line="5" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/user/update.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="171">
+          <caret line="9" lean-forward="true" selection-start-line="9" selection-end-line="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/permission.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="494">
+          <caret line="29" column="32" selection-start-line="29" selection-start-column="32" selection-end-line="29" selection-end-column="32" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/errno/code.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="341">
+          <caret line="27" column="70" selection-start-line="27" selection-start-column="70" selection-end-line="27" selection-end-column="70" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/handler/admin/permission/permission.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="4" column="1" lean-forward="true" selection-start-line="4" selection-start-column="1" selection-end-line="4" selection-end-column="1" />
+        <state relative-caret-position="209">
+          <caret line="11" selection-start-line="11" selection-end-line="16" selection-end-column="1" />
+          <folding>
+            <element signature="e#20#58#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="248">
+          <caret line="68" column="46" selection-start-line="68" selection-start-column="46" selection-end-line="68" selection-end-column="46" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/admin/permission/update.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="380">
+          <caret line="47" column="35" selection-start-line="47" selection-start-column="35" selection-end-line="47" selection-end-column="35" />
+          <folding>
+            <element signature="e#20#224#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

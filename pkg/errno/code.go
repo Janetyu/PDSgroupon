@@ -27,4 +27,6 @@ var (
 	// admin errors
 	ErrAdminHasRegist     = &Errno{Code: 20301, Message: "The username was used to registed"}
 	ErrAdminNotFound      = &Errno{Code: 20302, Message: "The admin was not found."}
+	ErrRoleHasCreate	  = &Errno{Code: 20303, Message: "The role has created."}
+	ErrRoleNoFound		  = &Errno{Code: 20304, Message: "The role was not found."}
 )
