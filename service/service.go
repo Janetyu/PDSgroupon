@@ -153,3 +153,70 @@ func ListUser2(username string, offset, limit int) ([]*model.UserInfo2, uint64, 
 
 	return infos, count, nil
 }
+
+func ListAdmin(offset, limit int) ([]*model.AdminInfo, uint64, error) {
+	// 用于存放没有密码的userinfo，可拓展搜索等功能
+	infos := make([]*model.AdminInfo, 0)
+	// offset 页数，limit 每页条数
+	admins, count, err := model.ListAdmin(offset, limit)
+	if err != nil {
+		return nil, count, err
+	}
+
+	// 保存数据库查询数据的原排序
+	ids := []uint64{}
+	for _, admin := range admins {
+		ids = append(ids, admin.BaseModel.Id)
+	}
+
+	// 控制goroutine的协程调度，监控工作
+	wg := sync.WaitGroup{}
+	adminList := model.AdminList{
+		Lock: new(sync.Mutex),
+		IdMap: make(map[uint64]*model.AdminInfo, len(admins)),
+	}
+
+	finished := make(chan bool, 1)
+
+	wg.Add(len(admins))
+	for _, a := range admins {
+		//wg.Add(1)
+
+		go func(adminModel *model.AdminModel) {
+			defer wg.Done()
+
+			// 用锁保证数据一致性
+			adminList.Lock.Lock()
+
+			// 对业务所需进行数据修改或其他操作
+			adminList.IdMap[adminModel.Id] = &model.AdminInfo{
+				Id: adminModel.Id,
+				Username: adminModel.Username,
+				RoleId: adminModel.RoleId,
+				CreatedAt: adminModel.CreatedAt.Format("2006-01-02 15:04:05"),
+				UpdatedAt: adminModel.UpdatedAt.Format("2006-01-02 15:04:05"),
+			}
+
+			adminList.Lock.Unlock()
+		}(a)
+	}
+
+	// 等 wg 为0时，关闭 finished 通道，退出并发操作
+	go func() {
+		wg.Wait()
+		close(finished)
+	}()
+
+	select {
+	case <- finished:
+	}
+
+	//wg.Wait()
+
+	// 按顺序复位所有userinfo
+	for _, id := range ids {
+		infos = append(infos, adminList.IdMap[id])
+	}
+
+	return infos, count, nil
+}

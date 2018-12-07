@@ -23,4 +23,8 @@ var (
 	// upload errors
 	ErrUploadExt  = &Errno{Code: 20201, Message: "The file ext invalid."}
 	ErrUploadFail = &Errno{Code: 20202, Message: "Error occurred while upload file."}
+
+	// admin errors
+	ErrAdminHasRegist     = &Errno{Code: 20301, Message: "The username was used to registed"}
+	ErrAdminNotFound      = &Errno{Code: 20302, Message: "The admin was not found."}
 )

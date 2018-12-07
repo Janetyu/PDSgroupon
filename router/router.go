@@ -9,6 +9,7 @@ import (
 	"PDSgroupon/handler/upload"
 	"PDSgroupon/handler/user"
 	"PDSgroupon/router/middleware"
+	"PDSgroupon/handler/admin"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -36,6 +37,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	{
 		global.POST("/userlogin", user.UserLogin)
 		global.POST("/userloginbysms", user.LoginBySms)
+		global.POST("/adminlogin",admin.AdminLogin)
 		global.POST("/vcode", user.CreateVerifiCode)
 		global.POST("/register", user.Register)
 	}
@@ -43,12 +45,23 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	u := g.Group("/v1/user")
 	u.Use(middleware.AuthMiddleware())
 	{
-		u.DELETE("/:id", user.Delete)
 		u.PUT("/update/:id", user.Update)
 		u.PUT("/resetpwd/:id", user.ResetPwd)
 		u.PUT("/upload/:id", upload.SingleUpload)
-		u.GET("/", user.List)
 		u.GET("/:id", user.Get)
+	}
+
+	a := g.Group("/v1/admin")
+	a.Use(middleware.AuthMiddleware())
+	{
+		a.POST("/register", admin.Register)
+		a.PUT("/detail/:id",admin.AdminResetPwd)
+		a.GET("/detail/:id",admin.Get)
+		a.GET("/",admin.List)
+
+		a.GET("/userlist/", user.List)
+		a.DELETE("/userdel/:id", user.Delete)
+		a.PUT("/userupd/:id", user.Update)
 	}
 
 	// 健康检查处理器的路由组
