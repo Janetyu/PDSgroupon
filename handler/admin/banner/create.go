@@ -16,7 +16,7 @@ import (
 )
 
 func Create(c *gin.Context) {
-	log.Info("Admin Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
+	log.Info("Banner Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	title := c.DefaultPostForm("title","")
 	url := c.DefaultPostForm("url","")

@@ -12,7 +12,7 @@ import (
 )
 
 func Create(c *gin.Context)  {
-	log.Info("Admin Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
+	log.Info("Permission Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 	var r CreateRequest
 	if err := c.Bind(&r); err != nil {
 		SendResponse(c, errno.ErrBind, nil)

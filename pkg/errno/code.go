@@ -30,4 +30,6 @@ var (
 	ErrRoleHasCreate	  = &Errno{Code: 20303, Message: "The role has created."}
 	ErrRoleNoFound		  = &Errno{Code: 20304, Message: "The role was not found."}
 	ErrBannerNotFount	  = &Errno{Code: 20305, Message: "The banner was not found."}
+	ErrCategoryHasCreate  = &Errno{Code: 20306, Message: "The category has created."}
+	ErrCategoryNotFount	  = &Errno{Code: 20307, Message: "The category was not found."}
 )

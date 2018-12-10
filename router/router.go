@@ -12,6 +12,7 @@ import (
 	"PDSgroupon/handler/admin"
 	"PDSgroupon/handler/admin/permission"
 	"PDSgroupon/handler/admin/banner"
+	"PDSgroupon/handler/admin/category"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -75,6 +76,15 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		a.DELETE("/banner/:id",banner.Delete)
 		a.PUT("/banner/:id",banner.Update)
 		a.PUT("/bannerupload/:id",upload.SingleUpload)
+
+		a.POST("/mainsortadd/",category.CreateMain)
+		a.POST("/subsortadd/",category.CreateSub)
+		a.GET("/mainsort/",category.MainList)
+		a.GET("/subsort/",category.SubList)
+		a.PUT("/mainsort/:id",category.UpdateMain)
+		a.PUT("/subsort/:id",category.UpdateSub)
+		a.DELETE("/mainsort/:id",category.DeleteMain)
+		a.DELETE("/subsort/:id",category.DeleteSub)
 	}
 
 	// 健康检查处理器的路由组

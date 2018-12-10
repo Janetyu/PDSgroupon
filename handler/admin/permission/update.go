@@ -15,7 +15,7 @@ import (
 )
 
 func Update(c *gin.Context) {
-	log.Info("Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
+	log.Info("Permission Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	// Get the user id from the url parameter.
 	roleId, _ := strconv.Atoi(c.Param("id"))
