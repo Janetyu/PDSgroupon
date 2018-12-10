@@ -11,6 +11,7 @@ import (
 	"PDSgroupon/router/middleware"
 	"PDSgroupon/handler/admin"
 	"PDSgroupon/handler/admin/permission"
+	"PDSgroupon/handler/admin/banner"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -67,6 +68,13 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		a.POST("/roleadd",permission.Create)
 		a.GET("/rolelist",permission.List)
 		a.PUT("/roleupd/:id",permission.Update)
+
+		a.POST("/banner/",banner.Create)
+		a.GET("/banner/:id",banner.Get)
+		a.GET("/banner/",banner.List)
+		a.DELETE("/banner/:id",banner.Delete)
+		a.PUT("/banner/:id",banner.Update)
+		a.PUT("/bannerupload/:id",upload.SingleUpload)
 	}
 
 	// 健康检查处理器的路由组

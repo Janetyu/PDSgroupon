@@ -7,10 +7,11 @@ import (
 
 type BannerModel struct {
 	BaseModel
+	Title string `json:"title" gorm:"column:title"`
 	Url string `json:"url" gorm:"column:url"`
-	Image string `json:"image" gorm:"column:image;not null" binding:"required"`
-	Index int `json:"index" gorm:"column:index;unique"`
-	CliNum int `json:"cli_num" gorm:"column:cli_num;default:0"`
+	Image string `json:"image" gorm:"column:image;not null" binding:"required" `
+	Order int `json:"order" gorm:"column:order;unique"`
+	CliNum int `json:"cli_num" gorm:"column:cli_num"`
 }
 
 func (b *BannerModel)TableName() string {
@@ -49,7 +50,7 @@ func ListBanner(offset, limit int) ([]*BannerModel, uint64, error) {
 		return banners,count,err
 	}
 
-	if err := DB.Self.Offset(offset - 1).Limit(limit).Order("index asc").Find(&banners).Error;err != nil{
+	if err := DB.Self.Offset(offset - 1).Limit(limit).Order("order").Find(&banners).Error;err != nil{
 		return banners,count,err
 	}
 

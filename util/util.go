@@ -56,6 +56,7 @@ func UniqueId() string {
 	return GetMd5String(base64.URLEncoding.EncodeToString(b))
 }
 
+// 返回完整文件存储路径名
 func UploadFile(uploadDir, ext string) (string, error) {
 
 	if err := os.MkdirAll(uploadDir, 777); err != nil {

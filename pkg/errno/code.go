@@ -29,4 +29,5 @@ var (
 	ErrAdminNotFound      = &Errno{Code: 20302, Message: "The admin was not found."}
 	ErrRoleHasCreate	  = &Errno{Code: 20303, Message: "The role has created."}
 	ErrRoleNoFound		  = &Errno{Code: 20304, Message: "The role was not found."}
+	ErrBannerNotFount	  = &Errno{Code: 20305, Message: "The banner was not found."}
 )

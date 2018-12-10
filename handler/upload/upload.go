@@ -14,6 +14,7 @@ import (
 	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
 	"PDSgroupon/util"
+	"os"
 )
 
 // 单文件上传
@@ -21,12 +22,13 @@ func SingleUpload(c *gin.Context) {
 	log.Info("SingleUpload function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	// Get the user id from the url parameter.
-	userId, _ := strconv.Atoi(c.Param("id"))
+	Id, _ := strconv.Atoi(c.Param("id"))
 
 	url := c.Request.URL.String()
 
 	var isUser = make(chan bool)
 	var isBanner = make(chan bool)
+	var oldFilePath string
 
 	go CheckUrl(url, isUser, isBanner)
 
@@ -49,12 +51,13 @@ func SingleUpload(c *gin.Context) {
 
 	select {
 	case <-isUser:
-		user, err := model.GetUserById(uint64(userId))
+		user, err := model.GetUserById(uint64(Id))
 		if err != nil {
 			SendResponse(c, errno.ErrUserNotFound, nil)
 			return
 		}
 
+		oldFilePath = user.HeadImage
 		uploadDir := "static/upload/user/" + time.Now().Format("2006/01/02/")
 
 		dst, err := util.UploadFile(uploadDir, ext)
@@ -86,6 +89,10 @@ func SingleUpload(c *gin.Context) {
 			return
 		}
 
+		if err := os.Remove(oldFilePath); err != nil {
+			log.Errorf(err,"del file occured error is :")
+		}
+
 		rsp := UserResponse{
 			HeadImage: dst,
 		}
@@ -93,7 +100,15 @@ func SingleUpload(c *gin.Context) {
 		SendResponse(c, nil, rsp)
 
 	case <-isBanner:
+		banner, err := model.GetBannerById(uint64(Id))
+		if err != nil {
+			SendResponse(c, errno.ErrBannerNotFount, nil)
+			return
+		}
+
+		oldFilePath = banner.Image
 		uploadDir := "static/upload/banner/" + time.Now().Format("2006/01/02/")
+
 		dst, err := util.UploadFile(uploadDir, ext)
 		if err != nil {
 			SendResponse(c, errno.ErrUploadFail, nil)
@@ -104,6 +119,30 @@ func SingleUpload(c *gin.Context) {
 			SendResponse(c, errno.InternalServerError, nil)
 			return
 		}
+
+		bmodel := model.BannerModel{
+			BaseModel: model.BaseModel{Id: banner.Id, CreatedAt: banner.CreatedAt, UpdatedAt: time.Time{}},
+			Title: banner.Title,
+			Url:   banner.Url,
+			Order: banner.Order,
+			Image: dst,
+			CliNum: banner.CliNum,
+		}
+
+		if err := bmodel.Update(); err != nil {
+			SendResponse(c, errno.ErrDatabase, nil)
+			return
+		}
+
+		if err := os.Remove(oldFilePath); err != nil {
+			log.Errorf(err,"del file occured error is :")
+		}
+
+		rsp := BannerResponse{
+			Image: dst,
+		}
+
+		SendResponse(c, nil, rsp)
 
 	default:
 		SendResponse(c, errno.ErrUploadFail, nil)
