@@ -1,0 +1,35 @@
+runmode: debug # 开发模式, debug, release, test
+addr: :80
+name: groupon
+url: http://134.175.113.58:80
+max_ping_count: 10
+jwt_secret: Rtg8BPKNEf2mB4mgvKONGPZZQSaJWNLijxR42qRgq0iBb5
+#tls:
+#  addr: :8081
+#  cert: conf/server.crt
+#  key: conf/server.key
+log:
+  writers: file,stdout
+  logger_level: DEBUG
+  logger_file: log/groupon.log
+  log_format_text: false
+  rollingPolicy: size   # 日志转存策略,选 daily 则根据天进行转存，如果是 size 则根据大小进行转存
+  log_rotate_date: 1    # 转存时间为1天
+  log_rotate_size: 1024 # 转存大小为1MB
+  log_backup_count: 7   # 备份文件的最大个数
+db:
+  name: groupon
+  addr: 134.175.113.58:3306
+  username: groupon
+  password: LfC7zNreWHnGyjWn
+docker_db:
+  name: groupon
+  addr: 127.0.0.1:3306
+  username: root
+  password: root
+redis:
+  network: tcp
+  addr: 127.0.0.1:6379
+docker_redis:
+  network: tcp
+  addr: 134.175.113.58:6379

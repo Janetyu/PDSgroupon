@@ -16,32 +16,35 @@ var RC *RedisConn
 
 type Database struct {
 	Self   *gorm.DB
-	Docker *gorm.DB
+	//Docker *gorm.DB
 }
 
 type RedisConn struct {
 	Self redis.Conn
+	Docker redis.Conn
 }
 
 func (db *Database) Init() {
 	DB = &Database{
 		Self:   GetSelfDB(),
-		Docker: GetDockerDB(),
+		//Docker: GetDockerDB(),
 	}
 }
 
 func (db *Database) Close() {
 	DB.Self.Close()
-	DB.Docker.Close()
+	//DB.Docker.Close()
 }
 
 func (rc *RedisConn) Init() error {
-	getRc, err := GetSelfRedis()
+	getRc1, _ := GetSelfRedis()
+	getRc2, err := GetDockerRedis()
 	if err != nil {
 		return err
 	}
 	RC = &RedisConn{
-		Self: getRc,
+		Self: getRc1,
+		Docker: getRc2,
 	}
 	return nil
 }
@@ -108,24 +111,33 @@ func InitSelfRedis() (redis.Conn, error) {
 	return rc, err
 }
 
+func InitDockerRedis() (redis.Conn, error) {
+	rc, err := redis.Dial(viper.GetString("docker_redis.network"), viper.GetString("docker_redis.addr"))
+	return rc, err
+}
+
 func GetSelfRedis() (redis.Conn, error) {
 	return InitSelfRedis()
+}
+
+func GetDockerRedis() (redis.Conn, error) {
+	return InitDockerRedis()
 }
 
 func (rc *RedisConn) SetKeyInRc(key, timeout string, value interface{}) error {
 	// 对本次连接进行set操作
 	// EX单位为秒
-	_, setErr := RC.Self.Do("set", key, value, "EX", timeout)
+	_, setErr := RC.Docker.Do("set", key, value, "EX", timeout)
 	return setErr
 }
 
 func (rc *RedisConn) GetKeyInRc(key string) (interface{}, error) {
 	// 使用redis的string类型获取set的k/v信息
-	val, getErr := redis.String(RC.Self.Do("get", key))
+	val, getErr := redis.String(RC.Docker.Do("get", key))
 	return val, getErr
 }
 
 func (rc *RedisConn) DelKeyInRc(key string) error {
-	_, delerr := RC.Self.Do("del", key)
+	_, delerr := RC.Docker.Do("del", key)
 	return delerr
 }
