@@ -1,8 +1,8 @@
 package permission
 
 import (
-	"time"
 	"PDSgroupon/model"
+	"time"
 )
 
 type CreateRequest struct {
@@ -10,13 +10,13 @@ type CreateRequest struct {
 }
 
 type CreateResponse struct {
-	Id uint64 `json:"id"`
-	RoleName string `json:"role_name"`
+	Id        uint64    `json:"id"`
+	RoleName  string    `json:"role_name"`
 	CreatedAt time.Time `json:"createdAt"`
 	UpdatedAt time.Time `json:"updatedAt"`
 }
 
 type ListResponse struct {
-	TotalCount uint64            `json:"totalCount"`
-	PermissionList   []*model.PermissionModel `json:"roleList"`
+	TotalCount     uint64                   `json:"totalCount"`
+	PermissionList []*model.PermissionModel `json:"roleList"`
 }

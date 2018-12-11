@@ -5,16 +5,16 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log/lager"
 	"github.com/lexkong/log"
+	"github.com/lexkong/log/lager"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/util"
 	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
+	"PDSgroupon/util"
 )
 
-func Update(c *gin.Context)  {
+func Update(c *gin.Context) {
 	log.Info("Banner Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	// Get the user id from the url parameter.
@@ -29,18 +29,18 @@ func Update(c *gin.Context)  {
 	title := c.DefaultPostForm("title", banner.Title)
 	url := c.DefaultPostForm("url", banner.Url)
 	order := c.DefaultPostForm("order", strconv.Itoa(banner.Order))
-	clinum := c.DefaultPostForm("cli_num",strconv.Itoa(banner.CliNum))
+	clinum := c.DefaultPostForm("cli_num", strconv.Itoa(banner.CliNum))
 
-	newOrder,_ := strconv.Atoi(order)
-	newCliNum,_ := strconv.Atoi(clinum)
+	newOrder, _ := strconv.Atoi(order)
+	newCliNum, _ := strconv.Atoi(clinum)
 
 	bmodel := model.BannerModel{
 		BaseModel: model.BaseModel{Id: banner.Id, CreatedAt: banner.CreatedAt, UpdatedAt: time.Time{}},
-		Title: title,
-		Url: url,
-		Order: newOrder,
-		Image: banner.Image,
-		CliNum: newCliNum,
+		Title:     title,
+		Url:       url,
+		Order:     newOrder,
+		Image:     banner.Image,
+		CliNum:    newCliNum,
 	}
 
 	// Save changed fields.
@@ -51,8 +51,8 @@ func Update(c *gin.Context)  {
 
 	rsp := GetOneResponse{
 		Id:        bmodel.Id,
-		Title:	   bmodel.Title,
-		Url:	   bmodel.Url,
+		Title:     bmodel.Title,
+		Url:       bmodel.Url,
 		Order:     bmodel.Order,
 		Image:     bmodel.Image,
 		CliNum:    bmodel.CliNum,

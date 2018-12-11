@@ -28,12 +28,12 @@ func List(c *gin.Context) {
 	infos, count, err := model.ListBanner(offset, limit)
 	if err != nil {
 		SendResponse(c, errno.ErrDatabase, nil)
-		log.Errorf(err,"getlist from database has error: ")
+		log.Errorf(err, "getlist from database has error: ")
 		return
 	}
 
 	SendResponse(c, nil, ListResponse{
 		TotalCount: count,
-		BannerList:   infos,
+		BannerList: infos,
 	})
 }

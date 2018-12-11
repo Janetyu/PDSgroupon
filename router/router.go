@@ -5,14 +5,14 @@ import (
 
 	"github.com/gin-gonic/gin"
 
+	"PDSgroupon/handler/admin"
+	"PDSgroupon/handler/admin/banner"
+	"PDSgroupon/handler/admin/category"
+	"PDSgroupon/handler/admin/permission"
 	"PDSgroupon/handler/sd"
 	"PDSgroupon/handler/upload"
 	"PDSgroupon/handler/user"
 	"PDSgroupon/router/middleware"
-	"PDSgroupon/handler/admin"
-	"PDSgroupon/handler/admin/permission"
-	"PDSgroupon/handler/admin/banner"
-	"PDSgroupon/handler/admin/category"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -40,7 +40,7 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	{
 		global.POST("/userlogin", user.UserLogin)
 		global.POST("/userloginbysms", user.LoginBySms)
-		global.POST("/adminlogin",admin.AdminLogin)
+		global.POST("/adminlogin", admin.AdminLogin)
 		global.POST("/vcode", user.CreateVerifiCode)
 		global.POST("/register", user.Register)
 	}
@@ -58,33 +58,33 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	a.Use(middleware.AuthMiddleware())
 	{
 		a.POST("/register", admin.Register)
-		a.PUT("/detail/:id",admin.AdminResetPwd)
-		a.GET("/detail/:id",admin.Get)
-		a.GET("/",admin.List)
+		a.PUT("/detail/:id", admin.AdminResetPwd)
+		a.GET("/detail/:id", admin.Get)
+		a.GET("/", admin.List)
 
 		a.GET("/userlist/", user.List)
 		a.DELETE("/userdel/:id", user.Delete)
 		a.PUT("/userupd/:id", user.Update)
 
-		a.POST("/roleadd",permission.Create)
-		a.GET("/rolelist",permission.List)
-		a.PUT("/roleupd/:id",permission.Update)
+		a.POST("/roleadd", permission.Create)
+		a.GET("/rolelist", permission.List)
+		a.PUT("/roleupd/:id", permission.Update)
 
-		a.POST("/banner/",banner.Create)
-		a.GET("/banner/:id",banner.Get)
-		a.GET("/banner/",banner.List)
-		a.DELETE("/banner/:id",banner.Delete)
-		a.PUT("/banner/:id",banner.Update)
-		a.PUT("/bannerupload/:id",upload.SingleUpload)
+		a.POST("/banner/", banner.Create)
+		a.GET("/banner/:id", banner.Get)
+		a.GET("/banner/", banner.List)
+		a.DELETE("/banner/:id", banner.Delete)
+		a.PUT("/banner/:id", banner.Update)
+		a.PUT("/bannerupload/:id", upload.SingleUpload)
 
-		a.POST("/mainsortadd/",category.CreateMain)
-		a.POST("/subsortadd/",category.CreateSub)
-		a.GET("/mainsort/",category.MainList)
-		a.GET("/subsort/",category.SubList)
-		a.PUT("/mainsort/:id",category.UpdateMain)
-		a.PUT("/subsort/:id",category.UpdateSub)
-		a.DELETE("/mainsort/:id",category.DeleteMain)
-		a.DELETE("/subsort/:id",category.DeleteSub)
+		a.POST("/mainsortadd/", category.CreateMain)
+		a.POST("/subsortadd/", category.CreateSub)
+		a.GET("/mainsort/", category.MainList)
+		a.GET("/subsort/", category.SubList)
+		a.PUT("/mainsort/:id", category.UpdateMain)
+		a.PUT("/subsort/:id", category.UpdateSub)
+		a.DELETE("/mainsort/:id", category.DeleteMain)
+		a.DELETE("/subsort/:id", category.DeleteSub)
 	}
 
 	// 健康检查处理器的路由组

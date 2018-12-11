@@ -26,7 +26,7 @@ func ListUser(offset, limit int) ([]*model.UserInfo, uint64, error) {
 	// 控制goroutine的协程调度，监控工作
 	wg := sync.WaitGroup{}
 	userList := model.UserList{
-		Lock: new(sync.Mutex),
+		Lock:  new(sync.Mutex),
 		IdMap: make(map[uint64]*model.UserInfo, len(users)),
 	}
 
@@ -44,15 +44,15 @@ func ListUser(offset, limit int) ([]*model.UserInfo, uint64, error) {
 
 			// 对业务所需进行数据修改或其他操作
 			userList.IdMap[userModel.Id] = &model.UserInfo{
-				Id: userModel.Id,
-				Username: userModel.Username,
-				NickName: userModel.NickName,
-				Address: userModel.Address,
-				Name: userModel.Name,
+				Id:        userModel.Id,
+				Username:  userModel.Username,
+				NickName:  userModel.NickName,
+				Address:   userModel.Address,
+				Name:      userModel.Name,
 				HeadImage: userModel.HeadImage,
-				Sex: userModel.Sex,
-				Account: userModel.Account,
-				RoleId: userModel.RoleId,
+				Sex:       userModel.Sex,
+				Account:   userModel.Account,
+				RoleId:    userModel.RoleId,
 				CreatedAt: userModel.CreatedAt.Format("2006-01-02 15:04:05"),
 				UpdatedAt: userModel.UpdatedAt.Format("2006-01-02 15:04:05"),
 			}
@@ -68,7 +68,7 @@ func ListUser(offset, limit int) ([]*model.UserInfo, uint64, error) {
 	}()
 
 	select {
-	case <- finished:
+	case <-finished:
 	}
 
 	//wg.Wait()
@@ -80,7 +80,6 @@ func ListUser(offset, limit int) ([]*model.UserInfo, uint64, error) {
 
 	return infos, count, nil
 }
-
 
 func ListUser2(username string, offset, limit int) ([]*model.UserInfo2, uint64, error) {
 	infos := make([]*model.UserInfo2, 0)
@@ -172,7 +171,7 @@ func ListAdmin(offset, limit int) ([]*model.AdminInfo, uint64, error) {
 	// 控制goroutine的协程调度，监控工作
 	wg := sync.WaitGroup{}
 	adminList := model.AdminList{
-		Lock: new(sync.Mutex),
+		Lock:  new(sync.Mutex),
 		IdMap: make(map[uint64]*model.AdminInfo, len(admins)),
 	}
 
@@ -190,9 +189,9 @@ func ListAdmin(offset, limit int) ([]*model.AdminInfo, uint64, error) {
 
 			// 对业务所需进行数据修改或其他操作
 			adminList.IdMap[adminModel.Id] = &model.AdminInfo{
-				Id: adminModel.Id,
-				Username: adminModel.Username,
-				RoleId: adminModel.RoleId,
+				Id:        adminModel.Id,
+				Username:  adminModel.Username,
+				RoleId:    adminModel.RoleId,
 				CreatedAt: adminModel.CreatedAt.Format("2006-01-02 15:04:05"),
 				UpdatedAt: adminModel.UpdatedAt.Format("2006-01-02 15:04:05"),
 			}
@@ -208,7 +207,7 @@ func ListAdmin(offset, limit int) ([]*model.AdminInfo, uint64, error) {
 	}()
 
 	select {
-	case <- finished:
+	case <-finished:
 	}
 
 	//wg.Wait()

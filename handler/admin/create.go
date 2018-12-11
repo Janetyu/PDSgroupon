@@ -2,13 +2,13 @@ package admin
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log/lager"
 	"github.com/lexkong/log"
+	"github.com/lexkong/log/lager"
 
 	. "PDSgroupon/handler"
+	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
 	"PDSgroupon/util"
-	"PDSgroupon/model"
 )
 
 func Register(c *gin.Context) {

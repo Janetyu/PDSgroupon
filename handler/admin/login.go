@@ -4,8 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/pkg/errno"
 	"PDSgroupon/model"
+	"PDSgroupon/pkg/errno"
 	"PDSgroupon/pkg/token"
 )
 
@@ -30,17 +30,17 @@ func AdminLogin(c *gin.Context) {
 	}
 
 	// Sign the json web token.
-	t, err := token.Sign(c, token.Context{ID: admin.Id, Username: admin.Username,RoleId: admin.RoleId}, "")
+	t, err := token.Sign(c, token.Context{ID: admin.Id, Username: admin.Username, RoleId: admin.RoleId}, "")
 	if err != nil {
 		SendResponse(c, errno.ErrToken, nil)
 		return
 	}
 
 	rsp := LoginResponse{
-		Id:        admin.Id,
-		Username:  admin.Username,
-		RoleId:    admin.RoleId,
-		Token:     t,
+		Id:       admin.Id,
+		Username: admin.Username,
+		RoleId:   admin.RoleId,
+		Token:    t,
 	}
 
 	SendResponse(c, nil, rsp)

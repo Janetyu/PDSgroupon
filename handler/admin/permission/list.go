@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/pkg/errno"
 	"PDSgroupon/model"
+	"PDSgroupon/pkg/errno"
 )
 
 func List(c *gin.Context) {
@@ -31,7 +31,7 @@ func List(c *gin.Context) {
 	}
 
 	SendResponse(c, nil, ListResponse{
-		TotalCount: count,
-		PermissionList:   infos,
+		TotalCount:     count,
+		PermissionList: infos,
 	})
 }

@@ -19,7 +19,7 @@ var (
 type Context struct {
 	ID       uint64
 	Username string
-	RoleId	 int64
+	RoleId   int64
 }
 
 // secretFunc validates the secret format. 检测 secret 的格式
@@ -87,9 +87,9 @@ func Sign(ctx *gin.Context, c Context, secret string) (tokenString string, err e
 	}
 	// The token content.
 	token := jwt.NewWithClaims(jwt.SigningMethodHS256, jwt.MapClaims{
-		"id":		 c.ID,
+		"id":       c.ID,
 		"username": c.Username,
-		"roleid": 	 c.RoleId,
+		"roleid":   c.RoleId,
 		"nbf":      time.Now().Unix(), // JWT Token 生效时间
 		"iat":      time.Now().Unix(), // JWT Token 签发时间
 	})

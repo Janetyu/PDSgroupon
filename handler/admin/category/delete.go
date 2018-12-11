@@ -5,8 +5,8 @@ import (
 
 	"github.com/gin-gonic/gin"
 
-	"PDSgroupon/model"
 	. "PDSgroupon/handler"
+	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
 )
 
@@ -20,7 +20,6 @@ func DeleteMain(c *gin.Context) {
 
 	SendResponse(c, nil, nil)
 }
-
 
 // 如果删除子类别，则只删除该子类别本身
 func DeleteSub(c *gin.Context) {

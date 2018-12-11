@@ -1,23 +1,23 @@
 package model
 
 import (
-	"PDSgroupon/pkg/constvar"
 	"PDSgroupon/pkg/auth"
+	"PDSgroupon/pkg/constvar"
 	"gopkg.in/go-playground/validator.v9"
 	"sync"
 )
 
 type AdminModel struct {
 	BaseModel
-	Username  string  `json:"username" gorm:"column:username;unique;not null" binding:"required" validate:"min=5"`
-	Password  string  `json:"password" gorm:"column:password;not null" binding:"required" validate:"min=6,max=128"`
-	RoleId    int64   `json:"role_id" gorm:"column:role_id"`
+	Username string `json:"username" gorm:"column:username;unique;not null" binding:"required" validate:"min=5"`
+	Password string `json:"password" gorm:"column:password;not null" binding:"required" validate:"min=6,max=128"`
+	RoleId   int64  `json:"role_id" gorm:"column:role_id"`
 }
 
 type AdminInfo struct {
 	Id        uint64 `json:"id"`
-	Username  string  `json:"username"`
-	RoleId    int64   `json:"role_id"`
+	Username  string `json:"username"`
+	RoleId    int64  `json:"role_id"`
 	CreatedAt string `json:"createdAt"`
 	UpdatedAt string `json:"updatedAt"`
 }

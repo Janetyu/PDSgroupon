@@ -2,16 +2,16 @@ package permission
 
 import (
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log/lager"
 	"github.com/lexkong/log"
+	"github.com/lexkong/log/lager"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/pkg/errno"
 	"PDSgroupon/model"
+	"PDSgroupon/pkg/errno"
 	"PDSgroupon/util"
 )
 
-func Create(c *gin.Context)  {
+func Create(c *gin.Context) {
 	log.Info("Permission Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 	var r CreateRequest
 	if err := c.Bind(&r); err != nil {
@@ -43,8 +43,8 @@ func Create(c *gin.Context)  {
 
 	newP, _ := model.GetPermission(p.RoleName)
 	rsp := CreateResponse{
-		Id: newP.Id,
-		RoleName: newP.RoleName,
+		Id:        newP.Id,
+		RoleName:  newP.RoleName,
 		CreatedAt: newP.CreatedAt,
 		UpdatedAt: newP.UpdatedAt,
 	}

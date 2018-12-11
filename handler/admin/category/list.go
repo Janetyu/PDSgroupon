@@ -11,7 +11,7 @@ import (
 	"PDSgroupon/pkg/errno"
 )
 
-func MainList(c *gin.Context)  {
+func MainList(c *gin.Context) {
 	offset, err := strconv.Atoi(c.DefaultQuery("offset", "1"))
 
 	if err != nil {
@@ -28,17 +28,17 @@ func MainList(c *gin.Context)  {
 	infos, count, err := model.ListMainCategory(offset, limit)
 	if err != nil {
 		SendResponse(c, errno.ErrDatabase, nil)
-		log.Errorf(err,"getlist from database has error: ")
+		log.Errorf(err, "getlist from database has error: ")
 		return
 	}
 
 	SendResponse(c, nil, ListResponse{
-		TotalCount: count,
-		CategoryList:   infos,
+		TotalCount:   count,
+		CategoryList: infos,
 	})
 }
 
-func SubList(c *gin.Context)  {
+func SubList(c *gin.Context) {
 	offset, err := strconv.Atoi(c.DefaultQuery("offset", "1"))
 
 	if err != nil {
@@ -61,12 +61,12 @@ func SubList(c *gin.Context)  {
 	infos, count, err := model.ListSubCategory(offset, limit, pid)
 	if err != nil {
 		SendResponse(c, errno.ErrDatabase, nil)
-		log.Errorf(err,"getlist from database has error: ")
+		log.Errorf(err, "getlist from database has error: ")
 		return
 	}
 
 	SendResponse(c, nil, ListResponse{
-		TotalCount: count,
-		CategoryList:   infos,
+		TotalCount:   count,
+		CategoryList: infos,
 	})
 }

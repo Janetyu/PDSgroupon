@@ -29,7 +29,7 @@ type UserPhone struct {
 }
 
 type UserInfo struct {
-	Id        uint64 `json:"id"`
+	Id        uint64  `json:"id"`
 	Username  string  `json:"username"`
 	NickName  string  `json:"nick_name"`
 	Address   string  `json:"address"`
@@ -38,8 +38,8 @@ type UserInfo struct {
 	Sex       string  `json:"sex"`
 	Account   float64 `json:"account"`
 	RoleId    int64   `json:"role_id"`
-	CreatedAt string `json:"createdAt"`
-	UpdatedAt string `json:"updatedAt"`
+	CreatedAt string  `json:"createdAt"`
+	UpdatedAt string  `json:"updatedAt"`
 }
 
 type UserList struct {

@@ -90,7 +90,7 @@ func SingleUpload(c *gin.Context) {
 		}
 
 		if err := os.Remove(oldFilePath); err != nil {
-			log.Errorf(err,"del file occured error is :")
+			log.Errorf(err, "del file occured error is :")
 		}
 
 		rsp := UserResponse{
@@ -122,11 +122,11 @@ func SingleUpload(c *gin.Context) {
 
 		bmodel := model.BannerModel{
 			BaseModel: model.BaseModel{Id: banner.Id, CreatedAt: banner.CreatedAt, UpdatedAt: time.Time{}},
-			Title: banner.Title,
-			Url:   banner.Url,
-			Order: banner.Order,
-			Image: dst,
-			CliNum: banner.CliNum,
+			Title:     banner.Title,
+			Url:       banner.Url,
+			Order:     banner.Order,
+			Image:     dst,
+			CliNum:    banner.CliNum,
 		}
 
 		if err := bmodel.Update(); err != nil {
@@ -135,7 +135,7 @@ func SingleUpload(c *gin.Context) {
 		}
 
 		if err := os.Remove(oldFilePath); err != nil {
-			log.Errorf(err,"del file occured error is :")
+			log.Errorf(err, "del file occured error is :")
 		}
 
 		rsp := BannerResponse{

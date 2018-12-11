@@ -20,14 +20,14 @@ func Get(c *gin.Context) {
 	}
 
 	rsp := GetOneResponse{
-		Id:        	banner.Id,
-		Title:		banner.Title,
-		Url:		banner.Url,
-		Order:		banner.Order,
-		Image:		banner.Image,
-		CliNum:     banner.CliNum,
-		CreatedAt:  banner.CreatedAt,
-		UpdatedAt:  banner.UpdatedAt,
+		Id:        banner.Id,
+		Title:     banner.Title,
+		Url:       banner.Url,
+		Order:     banner.Order,
+		Image:     banner.Image,
+		CliNum:    banner.CliNum,
+		CreatedAt: banner.CreatedAt,
+		UpdatedAt: banner.UpdatedAt,
 	}
 
 	SendResponse(c, nil, rsp)

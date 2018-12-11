@@ -22,7 +22,7 @@ func CreateMain(c *gin.Context) {
 	}
 
 	cg := model.CategoryModel{
-		Pid: 0,
+		Pid:      0,
 		SortName: r.SortName,
 	}
 
@@ -46,8 +46,8 @@ func CreateMain(c *gin.Context) {
 
 	newCg, _ := model.GetCategory(cg.SortName)
 	rsp := CreateResponse{
-		Id: newCg.Id,
-		Pid: newCg.Pid,
+		Id:       newCg.Id,
+		Pid:      newCg.Pid,
 		SortName: newCg.SortName,
 	}
 
@@ -56,7 +56,7 @@ func CreateMain(c *gin.Context) {
 }
 
 // 创建子类
-func CreateSub(c *gin.Context)  {
+func CreateSub(c *gin.Context) {
 	log.Info("CreateSubCategory function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 	var r CreateSubRequest
 	if err := c.Bind(&r); err != nil {
@@ -64,15 +64,14 @@ func CreateSub(c *gin.Context)  {
 		return
 	}
 
-
-	pid,err := strconv.Atoi(r.Pid)
+	pid, err := strconv.Atoi(r.Pid)
 	if err != nil {
 		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
 	cg := model.CategoryModel{
-		Pid: uint64(pid),
+		Pid:      uint64(pid),
 		SortName: r.SortName,
 	}
 
@@ -96,8 +95,8 @@ func CreateSub(c *gin.Context)  {
 
 	newCg, _ := model.GetCategory(cg.SortName)
 	rsp := CreateResponse{
-		Id: newCg.Id,
-		Pid: newCg.Pid,
+		Id:       newCg.Id,
+		Pid:      newCg.Pid,
 		SortName: newCg.SortName,
 	}
 

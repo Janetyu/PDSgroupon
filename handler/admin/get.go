@@ -20,11 +20,10 @@ func Get(c *gin.Context) {
 	}
 
 	rsp := GetOneResponse{
-		Id:        admin.Id,
-		Username:  admin.Username,
-		RoleId:    admin.RoleId,
+		Id:       admin.Id,
+		Username: admin.Username,
+		RoleId:   admin.RoleId,
 	}
 
 	SendResponse(c, nil, rsp)
 }
-

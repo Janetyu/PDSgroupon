@@ -1,8 +1,8 @@
 package admin
 
 import (
-	"PDSgroupon/pkg/errno"
 	"PDSgroupon/model"
+	"PDSgroupon/pkg/errno"
 )
 
 type CreateRequest struct {
@@ -20,21 +20,21 @@ type LoginRequest struct {
 }
 
 type LoginResponse struct {
-	Id        uint64 `json:"id"`
-	Username  string `json:"username"`
-	RoleId    int64  `json:"role_id"`
-	Token     string `json:"token"`
+	Id       uint64 `json:"id"`
+	Username string `json:"username"`
+	RoleId   int64  `json:"role_id"`
+	Token    string `json:"token"`
 }
 
 type GetOneResponse struct {
-	Id        uint64  `json:"id"`
-	Username  string  `json:"username"`
-	RoleId    int64   `json:"role_id"`
+	Id       uint64 `json:"id"`
+	Username string `json:"username"`
+	RoleId   int64  `json:"role_id"`
 }
 
 type ListResponse struct {
-	TotalCount uint64            `json:"totalCount"`
-	AdminList   []*model.AdminInfo `json:"adminList"`
+	TotalCount uint64             `json:"totalCount"`
+	AdminList  []*model.AdminInfo `json:"adminList"`
 }
 
 func checkPwdLen(pwd string) error {

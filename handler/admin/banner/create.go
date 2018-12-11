@@ -6,37 +6,37 @@ import (
 	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log/lager"
 	"github.com/lexkong/log"
+	"github.com/lexkong/log/lager"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/util"
-	"PDSgroupon/pkg/errno"
 	"PDSgroupon/model"
+	"PDSgroupon/pkg/errno"
+	"PDSgroupon/util"
 )
 
 func Create(c *gin.Context) {
 	log.Info("Banner Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
-	title := c.DefaultPostForm("title","")
-	url := c.DefaultPostForm("url","")
-	order := c.DefaultPostForm("order","")
+	title := c.DefaultPostForm("title", "")
+	url := c.DefaultPostForm("url", "")
+	order := c.DefaultPostForm("order", "")
 
 	if title == "" || url == "" || order == "" {
 		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
-	file,_ := c.FormFile("image")
+	file, _ := c.FormFile("image")
 
-	if ok := IsPathVaild(file.Filename);!ok {
+	if ok := IsPathVaild(file.Filename); !ok {
 		SendResponse(c, errno.ErrUploadExt, nil)
 		return
 	}
 
-	o,error := strconv.Atoi(order)
+	o, error := strconv.Atoi(order)
 	if error != nil {
-		SendResponse(c, errno.ErrValidation,nil)
+		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
@@ -48,10 +48,10 @@ func Create(c *gin.Context) {
 	}
 
 	banner := model.BannerModel{
-		Title: title,
-		Url: url,
-		Order: o,
-		Image: dst,
+		Title:  title,
+		Url:    url,
+		Order:  o,
+		Image:  dst,
 		CliNum: 0,
 	}
 
@@ -68,7 +68,6 @@ func Create(c *gin.Context) {
 
 	SendResponse(c, nil, nil)
 }
-
 
 // 判断文件后缀是否合法
 func IsPathVaild(filename string) bool {

@@ -1,17 +1,17 @@
 package permission
 
 import (
-	"time"
 	"strconv"
+	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log/lager"
 	"github.com/lexkong/log"
+	"github.com/lexkong/log/lager"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/util"
 	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
+	"PDSgroupon/util"
 )
 
 func Update(c *gin.Context) {
@@ -29,7 +29,7 @@ func Update(c *gin.Context) {
 	roleName := c.DefaultPostForm("role_name", role.RoleName)
 
 	pmodel := model.PermissionModel{
-		Id: role.Id,
+		Id:        role.Id,
 		RoleName:  roleName,
 		CreatedAt: role.CreatedAt,
 		UpdatedAt: time.Time{},
@@ -42,7 +42,7 @@ func Update(c *gin.Context) {
 	}
 
 	rsp := CreateResponse{
-		Id: pmodel.Id,
+		Id:        pmodel.Id,
 		RoleName:  pmodel.RoleName,
 		CreatedAt: pmodel.CreatedAt,
 		UpdatedAt: pmodel.UpdatedAt,

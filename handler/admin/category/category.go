@@ -7,17 +7,17 @@ type CreateMainRequest struct {
 }
 
 type CreateSubRequest struct {
-	Pid string `json:"pid"`
+	Pid      string `json:"pid"`
 	SortName string `json:"sort_name"`
 }
 
 type CreateResponse struct {
-	Id uint64 `json:"id"`
-	Pid uint64 `json:"pid"`
+	Id       uint64 `json:"id"`
+	Pid      uint64 `json:"pid"`
 	SortName string `json:"sort_name"`
 }
 
 type ListResponse struct {
-	TotalCount uint64            `json:"totalCount"`
-	CategoryList   []*model.CategoryModel `json:"categoryList"`
+	TotalCount   uint64                 `json:"totalCount"`
+	CategoryList []*model.CategoryModel `json:"categoryList"`
 }

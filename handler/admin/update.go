@@ -4,13 +4,13 @@ import (
 	"strconv"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log/lager"
 	"github.com/lexkong/log"
+	"github.com/lexkong/log/lager"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/util"
 	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
+	"PDSgroupon/util"
 )
 
 // 重置管理员密码
@@ -58,9 +58,9 @@ func AdminResetPwd(c *gin.Context) {
 	}
 
 	rsp := GetOneResponse{
-		Id:        amodel.Id,
-		Username:  amodel.Username,
-		RoleId:    amodel.RoleId,
+		Id:       amodel.Id,
+		Username: amodel.Username,
+		RoleId:   amodel.RoleId,
 	}
 
 	SendResponse(c, nil, rsp)

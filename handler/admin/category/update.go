@@ -27,8 +27,8 @@ func UpdateMain(c *gin.Context) {
 	sortName := c.DefaultPostForm("sort_name", category.SortName)
 
 	cmodel := model.CategoryModel{
-		Id: category.Id,
-		Pid: category.Pid,
+		Id:       category.Id,
+		Pid:      category.Pid,
 		SortName: sortName,
 	}
 
@@ -39,8 +39,8 @@ func UpdateMain(c *gin.Context) {
 	}
 
 	rsp := CreateResponse{
-		Id: cmodel.Id,
-		Pid: cmodel.Pid,
+		Id:       cmodel.Id,
+		Pid:      cmodel.Pid,
 		SortName: sortName,
 	}
 
@@ -59,7 +59,7 @@ func UpdateSub(c *gin.Context) {
 	}
 
 	newpid := c.DefaultPostForm("pid", "")
-	if newpid != ""{
+	if newpid != "" {
 		npid, err := strconv.Atoi(newpid)
 		if err != nil {
 			SendResponse(c, errno.ErrValidation, nil)
@@ -72,8 +72,8 @@ func UpdateSub(c *gin.Context) {
 	sortName := c.DefaultPostForm("sort_name", category.SortName)
 
 	cmodel := model.CategoryModel{
-		Id: category.Id,
-		Pid: category.Pid,
+		Id:       category.Id,
+		Pid:      category.Pid,
 		SortName: sortName,
 	}
 
@@ -84,8 +84,8 @@ func UpdateSub(c *gin.Context) {
 	}
 
 	rsp := CreateResponse{
-		Id: cmodel.Id,
-		Pid: cmodel.Pid,
+		Id:       cmodel.Id,
+		Pid:      cmodel.Pid,
 		SortName: sortName,
 	}
 
