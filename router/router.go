@@ -43,6 +43,9 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		global.POST("/adminlogin", admin.AdminLogin)
 		global.POST("/vcode", user.CreateVerifiCode)
 		global.POST("/register", user.Register)
+		global.GET("/mainsort/", category.MainList)
+		global.GET("/subsort/", category.SubList)
+		global.GET("/banner/", banner.List)
 	}
 
 	u := g.Group("/v1/user")
