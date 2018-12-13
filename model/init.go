@@ -21,7 +21,7 @@ type Database struct {
 
 type RedisConn struct {
 	Self redis.Conn
-	Docker redis.Conn
+	//Docker redis.Conn
 }
 
 func (db *Database) Init() {
@@ -37,14 +37,14 @@ func (db *Database) Close() {
 }
 
 func (rc *RedisConn) Init() error {
-	getRc1, _ := GetSelfRedis()
-	getRc2, err := GetDockerRedis()
+	getRc1, err := GetSelfRedis()
+	//getRc2, err := GetDockerRedis()
 	if err != nil {
 		return err
 	}
 	RC = &RedisConn{
 		Self: getRc1,
-		Docker: getRc2,
+		//Docker: getRc2,
 	}
 	return nil
 }
@@ -127,17 +127,17 @@ func GetDockerRedis() (redis.Conn, error) {
 func (rc *RedisConn) SetKeyInRc(key, timeout string, value interface{}) error {
 	// 对本次连接进行set操作
 	// EX单位为秒
-	_, setErr := RC.Docker.Do("set", key, value, "EX", timeout)
+	_, setErr := RC.Self.Do("set", key, value, "EX", timeout)
 	return setErr
 }
 
 func (rc *RedisConn) GetKeyInRc(key string) (interface{}, error) {
 	// 使用redis的string类型获取set的k/v信息
-	val, getErr := redis.String(RC.Docker.Do("get", key))
+	val, getErr := redis.String(RC.Self.Do("get", key))
 	return val, getErr
 }
 
 func (rc *RedisConn) DelKeyInRc(key string) error {
-	_, delerr := RC.Docker.Do("del", key)
+	_, delerr := RC.Self.Do("del", key)
 	return delerr
 }

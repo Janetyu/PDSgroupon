@@ -11,6 +11,7 @@ var (
 	ErrToken      = &Errno{Code: 20003, Message: "Error occurred while signing the JSON web token."}
 	ErrRedisConn  = &Errno{Code: 20004, Message: "Redis Conn error."}
 	ErrRequestSms = &Errno{Code: 20005, Message: "Error occurred while request sms server"}
+	ErrPermission = &Errno{Code: 20006, Message: "Error permission."}
 
 	// user errors
 	ErrEncrypt           = &Errno{Code: 20101, Message: "Error occurred while encrypting the user password."}
