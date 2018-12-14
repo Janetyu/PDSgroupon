@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50517
 File Encoding         : 65001
 
-Date: 2018-12-11 11:31:25
+Date: 2018-12-14 09:11:23
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -258,20 +258,29 @@ INSERT INTO `roles` VALUES ('6', '商品管理员', '2018-12-07 15:25:05', '2018
 -- ----------------------------
 DROP TABLE IF EXISTS `shops`;
 CREATE TABLE `shops` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `shop_name` varchar(64) DEFAULT NULL,
-  `owner_id` int(11) DEFAULT NULL,
-  `shop_addr` varchar(64) DEFAULT NULL,
-  `shop_phone` varchar(64) DEFAULT NULL,
-  `shop_qq` varchar(64) DEFAULT NULL,
-  `shop_logo` varchar(64) DEFAULT NULL,
-  `shop_intro` varchar(164) DEFAULT NULL,
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
+  `shop_name` varchar(64) NOT NULL,
+  `owner_cert` varchar(64) NOT NULL,
+  `owner_id` bigint(11) NOT NULL,
+  `shop_addr` varchar(64) NOT NULL,
+  `shop_phone` varchar(64) NOT NULL,
+  `shop_cert` varchar(64) NOT NULL,
+  `shop_qq` varchar(64) NOT NULL,
+  `shop_logo` varchar(255) NOT NULL,
+  `shop_intro` text NOT NULL,
+  `is_review` varchar(64) NOT NULL,
+  `mark` varchar(64) DEFAULT NULL,
+  `createdAt` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  `updatedAt` timestamp NOT NULL DEFAULT '0000-00-00 00:00:00',
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of shops
 -- ----------------------------
+INSERT INTO `shops` VALUES ('1', '消消乐', '4526852385456451', '2', '顺德', '18320399457', '54687132164', '931242644', 'static/upload/merchants/2018/12/13/f58c0463dfef000ff7c4ca9bc1985de8.jpg', 'sdsadasd13212465', '审核通过', '', '2018-12-13 16:07:45', '2018-12-14 08:47:55');
+INSERT INTO `shops` VALUES ('3', '消消乐2', '4526852385456451', '5', '顺德2', '18320399457', '54687132164', '931242644', 'static/upload/merchants/2018/12/13/39db0c9e7f0e97a67bab8a3cb8c072a6.jpg', 'sdsadasd13212465', '审核通过', '', '2018-12-13 16:24:32', '2018-12-14 08:54:21');
+INSERT INTO `shops` VALUES ('4', '消消乐2', '4526852385456451', '6', '顺德2', '18320399457', '54687132164', '931242644', 'static/upload/merchants/2018/12/13/24cfede81c555d245ec9cc9d2cc6a0eb.jpg', 'sdsadasd13212465', '正在审核', null, '2018-12-13 16:24:36', '2018-12-13 16:24:36');
 
 -- ----------------------------
 -- Table structure for `shop_msgs`
@@ -337,9 +346,9 @@ CREATE TABLE `users` (
 -- ----------------------------
 -- Records of users
 -- ----------------------------
-INSERT INTO `users` VALUES ('2', '18320399457', '小白', '$2a$10$PI4zH/PTaMPV4vc4mRM1n.Bdt222bdgUIER1yKOjRlZHP1yMrL6Uu', '顺德', '伟林', 'static/upload/user/2018/11/29/25c73b25cc67595a78fb387eea0c4972.jpg', '男', '0', '1', '2018-11-29 16:47:08', '2018-11-30 09:05:13');
+INSERT INTO `users` VALUES ('2', '18320399457', '小白', '$2a$10$PI4zH/PTaMPV4vc4mRM1n.Bdt222bdgUIER1yKOjRlZHP1yMrL6Uu', '顺德', '伟林', 'static/upload/user/2018/11/29/25c73b25cc67595a78fb387eea0c4972.jpg', '男', '0', '2', '2018-11-29 16:47:08', '2018-12-14 08:47:53');
 INSERT INTO `users` VALUES ('4', '13659763182', '', '$2a$10$hsxR4ofpweH1inhlsNo2OeClufMDwEvn3xj9Q6rndPN5JyqUpyyx6', '陆丰', '富华', '', '男', '0', '1', '2018-11-30 09:55:26', '2018-11-30 09:55:26');
-INSERT INTO `users` VALUES ('5', '13420120750', '', '$2a$10$7SyJNdSzEGd521IKFJR73eTnl8chkzDXupto8tWWIbZljdq27koHi', '廉江', '景润', '', '男', '0', '1', '2018-11-30 10:13:02', '2018-11-30 10:13:02');
+INSERT INTO `users` VALUES ('5', '13420120750', '', '$2a$10$7SyJNdSzEGd521IKFJR73eTnl8chkzDXupto8tWWIbZljdq27koHi', '廉江', '景润', '', '男', '0', '2', '2018-11-30 10:13:02', '2018-12-14 08:54:21');
 INSERT INTO `users` VALUES ('6', '13420121717', '小茂', '$2a$10$LtwwPtQ8/R4Rv7RcxgRXPug2UAP1C6TGnf3UlREjwPUAogYPSON02', '深圳', '林佳茂', '', '男', '0', '1', '2018-11-30 18:54:46', '2018-11-30 21:27:25');
 
 -- ----------------------------
