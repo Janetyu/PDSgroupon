@@ -17,7 +17,7 @@ import (
 func Update(c *gin.Context) {
 	log.Info("Banner Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
-	// Get the user id from the url parameter.
+	// Get the banner id from the url parameter.
 	bannerId, _ := strconv.Atoi(c.Param("id"))
 
 	banner, err := model.GetBannerById(uint64(bannerId))

@@ -16,8 +16,9 @@ type MerchantModel struct {
 	ShopIntro string `json:"shop_intro" gorm:"column:shop_intro"`
 	ShopAddr string `json:"shop_addr" gorm:"column:shop_addr"`
 	UserCert string `json:"owner_cert" gorm:"column:owner_cert"` // 身份证
-	UserId uint64 `json:"owner_id" gorm:"column:owner_cert"`
-	IsReview bool `json:"is_review" gorm:"column:is_review"`   // 是否通过审核
+	UserId uint64 `json:"owner_id" gorm:"column:owner_id"`
+	IsReview string `json:"is_review" gorm:"column:is_review"`   // 是否通过审核
+	Mark string	`json:"mark" gorm:"column:mark"`
 }
 
 func (m *MerchantModel) TableName() string {
@@ -73,7 +74,7 @@ func ListMerchantAll() ([]*MerchantModel, error) {
 
 	merchants := make([]*MerchantModel, 0)
 
-	if err := DB.Self.Order("index asc").Find(&merchants).Error; err != nil {
+	if err := DB.Self.Find(&merchants).Error; err != nil {
 		return merchants, err
 	}
 

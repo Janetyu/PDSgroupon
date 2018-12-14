@@ -13,6 +13,7 @@ import (
 	"PDSgroupon/handler/upload"
 	"PDSgroupon/handler/user"
 	"PDSgroupon/router/middleware"
+	"PDSgroupon/handler/merchants"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -38,11 +39,13 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 
 	global := g.Group("/v1/global")
 	{
+		global.POST("/register", user.Register)
 		global.POST("/userlogin", user.UserLogin)
 		global.POST("/userloginbysms", user.LoginBySms)
-		global.POST("/adminlogin", admin.AdminLogin)
 		global.POST("/vcode", user.CreateVerifiCode)
-		global.POST("/register", user.Register)
+
+		global.POST("/adminlogin", admin.AdminLogin)
+
 		global.GET("/mainsort/", category.MainList)
 		global.GET("/subsort/", category.SubList)
 		global.GET("/banner/", banner.List)
@@ -54,7 +57,17 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		u.PUT("/update/:id", user.Update)
 		u.PUT("/resetpwd/:id", user.ResetPwd)
 		u.PUT("/upload/:id", upload.SingleUpload)
-		u.GET("/:id", user.Get)
+		u.GET("/detail/:id", user.Get)
+
+		u.POST("/merchant/",merchants.Create)
+		u.PUT("/merchant/:uid",merchants.UpdateForApply)
+		u.GET("/merchant/:uid",merchants.MerchantStatus)
+	}
+
+	m := g.Group("/v1/merchant")
+	m.Use(middleware.AuthMiddleware())
+	{
+
 	}
 
 	a := g.Group("/v1/admin")
@@ -88,6 +101,12 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		a.PUT("/subsort/:id", category.UpdateSub)
 		a.DELETE("/mainsort/:id", category.DeleteMain)
 		a.DELETE("/subsort/:id", category.DeleteSub)
+
+		a.POST("/merchant/",merchants.Create)
+		a.PUT("/merchant/:id",merchants.Review)
+		a.GET("/merchant/:id",merchants.Get)
+		a.GET("/merchant/",merchants.List)
+		a.DELETE("/merchant/:id",merchants.Delete)
 	}
 
 	// 健康检查处理器的路由组

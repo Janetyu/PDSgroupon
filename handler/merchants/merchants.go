@@ -6,6 +6,11 @@ import (
 	"PDSgroupon/model"
 )
 
+type ReViewRequest struct {
+	IsReview string `json:"is_review"`
+	Mark string `json:"mark"` // 审核不通过备注
+}
+
 type GetOneResponse struct {
 	Id uint64 `json:"id"`
 	ShopName string `json:"shop_name"`
@@ -17,6 +22,8 @@ type GetOneResponse struct {
 	ShopAddr string `json:"shop_addr"`
 	UserCert string `json:"owner_cert"` // 身份证
 	UserId uint64 `json:"owner_id"`
+	IsReview string `json:"is_review"`
+	Mark string `json:"mark"`
 	CreatedAt time.Time `json:"createdAt"`
 }
 

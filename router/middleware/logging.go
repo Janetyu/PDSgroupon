@@ -33,7 +33,7 @@ func Logging() gin.HandlerFunc {
 
 		// MustCompile和Compile一样,但如果无法解析表达式，会引起panic
 		// 该中间件只记录业务请求，比如 /v1/user 和 /login 路径，可以按需增加匹配路径
-		reg := regexp.MustCompile("(/v1/user | /v1/admin | /v1/global | /v1/merchant)")
+		reg := regexp.MustCompile("(/v1/user|/v1/admin|/v1/global|/v1/merchant)")
 		// MatchString报告Regexp是否与字符串s匹配
 		if !reg.MatchString(path) {
 			return

@@ -33,4 +33,8 @@ var (
 	ErrBannerNotFount    = &Errno{Code: 20305, Message: "The banner was not found."}
 	ErrCategoryHasCreate = &Errno{Code: 20306, Message: "The category has created."}
 	ErrCategoryNotFount  = &Errno{Code: 20307, Message: "The category was not found."}
+
+	// merchant errors
+	ErrMerchantHasApplyOrPass = &Errno{Code: 20401, Message: "The user has apply or passed a merchant."}
+	ErrMerchantNotFount    = &Errno{Code: 20402, Message: "The merchant was not found."}
 )

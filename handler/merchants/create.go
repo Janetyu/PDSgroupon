@@ -1,7 +1,6 @@
 package merchants
 
 import (
-	"strconv"
 	"time"
 	"path"
 
@@ -13,10 +12,11 @@ import (
 	"PDSgroupon/util"
 	"PDSgroupon/pkg/errno"
 	"PDSgroupon/model"
+	"strconv"
 )
 
 func Create(c *gin.Context)  {
-	log.Info("Merchants Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
+	log.Info("Merchant Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	shopName := c.DefaultPostForm("shop_name", "")
 	shopPhone := c.DefaultPostForm("shop_phone", "")
@@ -36,16 +36,26 @@ func Create(c *gin.Context)  {
 		return
 	}
 
-	file, _ := c.FormFile("shop_logo")
-
-	if ok := IsPathVaild(file.Filename); !ok {
-		SendResponse(c, errno.ErrUploadExt, nil)
+	uid, err := strconv.Atoi(userId)
+	if err != nil {
+		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
 
-	uid, error := strconv.Atoi(userId)
-	if error != nil {
+	if mer,_ := model.GetMerchantByOwnerId(uint64(uid)); mer.ShopName != "" {
+		SendResponse(c, errno.ErrMerchantHasApplyOrPass, nil)
+		return
+	}
+
+	file, _ := c.FormFile("shop_logo")
+
+	if file == nil {
 		SendResponse(c, errno.ErrValidation, nil)
+		return
+	}
+
+	if ok := IsPathVaild(file.Filename); !ok {
+		SendResponse(c, errno.ErrUploadExt, nil)
 		return
 	}
 
@@ -66,7 +76,8 @@ func Create(c *gin.Context)  {
 		ShopLogo: dst,
 		UserCert: userCert,
 		UserId: uint64(uid),
-		IsReview: false,
+		IsReview: "正在审核",
+		Mark: "",
 	}
 
 	if err := merchants.Create(); err != nil {
