@@ -2,17 +2,26 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="243dab07-9afb-4b3f-88e8-b65a634cea58" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/handler/merchants/delete.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/handler/admin/banner/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/admin/banner/update.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/PDSgroupon" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/deployserver/main.go" beforeDir="false" afterPath="$PROJECT_DIR$/deployserver/main.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/merchants/create.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/merchants/create.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/merchants/delete.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/merchants/delete.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/merchants/get.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/merchants/get.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/merchants/list.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/merchants/list.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/merchants/merchants.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/merchants/merchants.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/handler/merchants/update.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/merchants/update.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/handler/upload/upload.go" beforeDir="false" afterPath="$PROJECT_DIR$/handler/upload/upload.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/goods.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/goods.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/init.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/init.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/model/merchants.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/merchants.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/model/orders.go" beforeDir="false" afterPath="$PROJECT_DIR$/model/orders.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/pkg/errno/code.go" beforeDir="false" afterPath="$PROJECT_DIR$/pkg/errno/code.go" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/router/middleware/logging.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/middleware/logging.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/router/middleware/auth.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/middleware/auth.go" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/router/router.go" beforeDir="false" afterPath="$PROJECT_DIR$/router/router.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/shirou/gopsutil/disk/disk_linux.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/shirou/gopsutil/disk/disk_linux.go" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/vendor/github.com/shirou/gopsutil/disk/disk_windows.go" beforeDir="false" afterPath="$PROJECT_DIR$/vendor/github.com/shirou/gopsutil/disk/disk_windows.go" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -24,9 +33,9 @@
     <session id="2070847417">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="46" />
+          <entry key="project.closed" value="48" />
           <entry key="project.open.time.0" value="8" />
-          <entry key="project.open.time.1" value="14" />
+          <entry key="project.open.time.1" value="15" />
           <entry key="project.open.time.11" value="1" />
           <entry key="project.open.time.14" value="3" />
           <entry key="project.open.time.15" value="2" />
@@ -38,48 +47,49 @@
           <entry key="project.open.time.26" value="1" />
           <entry key="project.open.time.3" value="2" />
           <entry key="project.open.time.4" value="2" />
-          <entry key="project.open.time.5" value="2" />
-          <entry key="project.opened" value="47" />
+          <entry key="project.open.time.5" value="3" />
+          <entry key="project.opened" value="49" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.open">
         <counts>
           <entry key="Makefile" value="2" />
           <entry key="gitignore" value="1" />
-          <entry key="go" value="496" />
+          <entry key="go" value="503" />
           <entry key="jpg" value="1" />
           <entry key="json" value="2" />
           <entry key="log" value="9" />
-          <entry key="md" value="9" />
-          <entry key="sh" value="1" />
-          <entry key="yaml" value="19" />
+          <entry key="md" value="10" />
+          <entry key="sh" value="3" />
+          <entry key="yaml" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.open">
         <counts>
+          <entry key="Bash" value="2" />
           <entry key="Git file" value="1" />
-          <entry key="Go" value="496" />
+          <entry key="Go" value="503" />
           <entry key="Image" value="1" />
           <entry key="JSON" value="2" />
           <entry key="Log" value="4" />
-          <entry key="Markdown" value="9" />
+          <entry key="Markdown" value="10" />
           <entry key="PLAIN_TEXT" value="8" />
-          <entry key="YAML" value="19" />
+          <entry key="YAML" value="20" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="Makefile" value="243" />
-          <entry key="go" value="23082" />
-          <entry key="md" value="138" />
+          <entry key="go" value="23228" />
+          <entry key="md" value="202" />
           <entry key="sh" value="104" />
           <entry key="yaml" value="794" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.types.edit">
         <counts>
-          <entry key="Go" value="23082" />
-          <entry key="Markdown" value="138" />
+          <entry key="Go" value="23228" />
+          <entry key="Markdown" value="202" />
           <entry key="PLAIN_TEXT" value="347" />
           <entry key="YAML" value="794" />
         </counts>
@@ -100,68 +110,26 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/router/router.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="149">
-              <caret line="102" column="52" lean-forward="true" selection-start-line="102" selection-start-column="52" selection-end-line="102" selection-end-column="52" />
+            <state relative-caret-position="-687">
+              <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/merchants/list.go">
+        <entry file="file://$PROJECT_DIR$/handler/upload/upload.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="76">
-              <caret line="13" column="5" selection-start-line="13" selection-start-column="5" selection-end-line="13" selection-end-column="5" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/handler/merchants/delete.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="323">
-              <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+            <state relative-caret-position="304">
+              <caret line="64" column="52" lean-forward="true" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
             </state>
           </provider>
         </entry>
       </file>
       <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/merchants/get.go">
+        <entry file="file://$PROJECT_DIR$/util/util.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="358">
-              <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-              <folding>
-                <element signature="e#19#138#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/merchants/create.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="81" selection-start-line="81" selection-end-line="81" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/merchants/update.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1615">
-              <caret line="223" column="25" lean-forward="true" selection-start-line="223" selection-start-column="25" selection-end-line="223" selection-end-column="25" />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/handler/merchants/merchants.go">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="301">
-              <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
-              <folding>
-                <element signature="e#19#59#0" expanded="true" />
-              </folding>
+            <state relative-caret-position="931">
+              <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
             </state>
           </provider>
         </entry>
@@ -169,8 +137,38 @@
       <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/pkg/errno/code.go">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="132">
-              <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
+            <state relative-caret-position="399">
+              <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/README.md">
+          <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+            <state split_layout="SPLIT">
+              <first_editor relative-caret-position="361">
+                <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+              </first_editor>
+              <second_editor />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/router/middleware/auth.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="399">
+              <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/model/init.go">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="228">
+              <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
             </state>
           </provider>
         </entry>
@@ -198,7 +196,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/handler/admin/users/update.go" />
         <option value="$PROJECT_DIR$/model/user.go" />
         <option value="$PROJECT_DIR$/handler/admin/create.go" />
         <option value="$PROJECT_DIR$/handler/admin/login.go" />
@@ -214,7 +211,6 @@
         <option value="$PROJECT_DIR$/handler/admin/banner/delete.go" />
         <option value="$PROJECT_DIR$/handler/admin/banner/get.go" />
         <option value="$PROJECT_DIR$/util/util.go" />
-        <option value="$PROJECT_DIR$/handler/upload/upload.go" />
         <option value="$PROJECT_DIR$/handler/admin/banner/banner.go" />
         <option value="$PROJECT_DIR$/model/banner.go" />
         <option value="$PROJECT_DIR$/handler/admin/banner/create.go" />
@@ -237,8 +233,6 @@
         <option value="$PROJECT_DIR$/model/orders.go" />
         <option value="$PROJECT_DIR$/model/model.go" />
         <option value="$PROJECT_DIR$/handler/merchants/list.go" />
-        <option value="$PROJECT_DIR$/model/init.go" />
-        <option value="$PROJECT_DIR$/router/middleware/auth.go" />
         <option value="$PROJECT_DIR$/pkg/errno/code.go" />
         <option value="$PROJECT_DIR$/handler/admin/banner/update.go" />
         <option value="$PROJECT_DIR$/model/merchants.go" />
@@ -249,6 +243,10 @@
         <option value="$PROJECT_DIR$/handler/merchants/merchants.go" />
         <option value="$PROJECT_DIR$/handler/merchants/update.go" />
         <option value="$PROJECT_DIR$/handler/merchants/delete.go" />
+        <option value="$PROJECT_DIR$/README.md" />
+        <option value="$PROJECT_DIR$/router/middleware/auth.go" />
+        <option value="$PROJECT_DIR$/handler/upload/upload.go" />
+        <option value="$PROJECT_DIR$/model/init.go" />
       </list>
     </option>
   </component>
@@ -272,7 +270,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -312,6 +309,12 @@
             <path>
               <item name="PDSgroupon" type="b2602c69:ProjectViewProjectNode" />
               <item name="PDSgroupon" type="462c0819:PsiDirectoryNode" />
+              <item name="handler" type="462c0819:PsiDirectoryNode" />
+              <item name="sd" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PDSgroupon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PDSgroupon" type="462c0819:PsiDirectoryNode" />
               <item name="log" type="462c0819:PsiDirectoryNode" />
             </path>
             <path>
@@ -341,10 +344,29 @@
               <item name="router" type="462c0819:PsiDirectoryNode" />
               <item name="middleware" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="PDSgroupon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PDSgroupon" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PDSgroupon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PDSgroupon" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="upload" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="PDSgroupon" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PDSgroupon" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="upload" type="462c0819:PsiDirectoryNode" />
+              <item name="user" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -401,22 +423,22 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="784" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="784" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.49751243" visible="true" weight="0.25114155" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.49751243" visible="true" weight="0.25722983" />
       <window_info id="Structure" order="1" sideWeight="0.50248754" side_tool="true" weight="0.2678843" />
       <window_info id="Favorites" order="2" sideWeight="0.50082916" side_tool="true" weight="0.26331812" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Find" order="1" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49923897" visible="true" weight="0.25538972" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.49923897" weight="0.40298507" />
       <window_info anchor="bottom" id="Debug" order="3" weight="0.29187396" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="TODO" order="6" weight="0.3283582" />
       <window_info anchor="bottom" id="Database Changes" order="7" show_stripe_button="false" />
       <window_info anchor="bottom" id="Version Control" order="8" weight="0.32006633" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49923897" weight="0.40464345" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49923897" weight="0.3233831" />
       <window_info anchor="bottom" id="Event Log" order="10" sideWeight="0.50076103" side_tool="true" weight="0.3283582" />
       <window_info anchor="right" id="Commander" internal_type="SLIDING" order="0" type="SLIDING" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -477,34 +499,6 @@
     <option name="myLimit" value="2678400000" />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/handler/admin/permission/permission.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="18" selection-start-line="18" selection-end-line="21" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/admin/permission/list.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="32" column="31" lean-forward="true" selection-start-line="32" selection-start-column="31" selection-end-line="32" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/admin/permission/create.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="24" selection-start-line="14" selection-start-column="24" selection-end-line="14" selection-end-column="24" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/handler/upload/upload.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2451">
-          <caret line="144" column="32" lean-forward="true" selection-start-line="144" selection-start-column="32" selection-end-line="144" selection-end-column="32" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handler/user/delete.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="121">
@@ -554,13 +548,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="342">
           <caret line="25" column="35" selection-start-line="25" selection-start-column="35" selection-end-line="25" selection-end-column="35" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/deploy.sh">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="8" column="26" selection-start-line="8" selection-start-column="26" selection-end-line="8" selection-end-column="26" />
         </state>
       </provider>
     </entry>
@@ -662,20 +649,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/conf/yun_config.yaml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/model/init.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="608">
-          <caret line="41" column="19" selection-start-line="41" selection-start-column="19" selection-end-line="41" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handler/user/login.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="38">
@@ -697,13 +670,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/router/middleware/auth.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="235">
-          <caret line="36" column="57" lean-forward="true" selection-start-line="36" selection-start-column="57" selection-end-line="36" selection-end-column="57" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handler/admin/banner/list.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-95">
@@ -722,9 +688,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1142">
           <caret line="13" column="51" lean-forward="true" selection-start-line="13" selection-start-column="51" selection-end-line="13" selection-end-column="51" />
-          <folding>
-            <element signature="e#15#91#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -775,13 +738,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/pkg/errno/code.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="132">
-          <caret line="17" column="4" selection-start-line="17" selection-start-column="4" selection-end-line="17" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/handler/merchants/create.go">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="264">
@@ -793,9 +749,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="301">
           <caret line="22" column="40" selection-start-line="22" selection-start-column="40" selection-end-line="22" selection-end-column="40" />
-          <folding>
-            <element signature="e#19#59#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -810,16 +763,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="358">
           <caret line="19" column="5" selection-start-line="19" selection-start-column="5" selection-end-line="19" selection-end-column="5" />
-          <folding>
-            <element signature="e#19#138#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/router/router.go">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="149">
-          <caret line="102" column="52" lean-forward="true" selection-start-line="102" selection-start-column="52" selection-end-line="102" selection-end-column="52" />
         </state>
       </provider>
     </entry>
@@ -832,8 +775,81 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/handler/merchants/delete.go">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="27" column="45" selection-start-line="27" selection-start-column="45" selection-end-line="27" selection-end-column="45" />
+        <state relative-caret-position="132">
+          <caret line="34" column="14" selection-start-line="34" selection-start-column="14" selection-end-line="34" selection-end-column="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/conf/yun_config.yaml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="97">
+          <caret line="14" column="21" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/sd/check.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="19">
+          <caret line="11" column="1" selection-start-line="11" selection-start-column="1" selection-end-line="11" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/deploy.sh">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="8" column="18" selection-start-line="8" selection-start-column="18" selection-end-line="8" selection-end-column="18" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/util/util.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="931">
+          <caret line="62" column="16" selection-start-line="62" selection-start-column="16" selection-end-line="62" selection-end-column="16" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pkg/errno/code.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="21" column="68" selection-start-line="21" selection-start-column="68" selection-end-line="21" selection-end-column="68" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/router.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-687">
+          <caret line="58" column="44" selection-start-line="58" selection-start-column="44" selection-end-line="58" selection-end-column="44" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/handler/upload/upload.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="304">
+          <caret line="64" column="52" lean-forward="true" selection-start-line="64" selection-start-column="52" selection-end-line="64" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/router/middleware/auth.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="399">
+          <caret line="28" column="50" lean-forward="true" selection-start-line="28" selection-start-column="50" selection-end-line="28" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/model/init.go">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="24" column="1" lean-forward="true" selection-start-line="24" selection-start-column="1" selection-end-line="24" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/README.md">
+      <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
+        <state split_layout="SPLIT">
+          <first_editor relative-caret-position="361">
+            <caret line="19" column="3" lean-forward="true" selection-start-line="19" selection-start-column="3" selection-end-line="19" selection-end-column="3" />
+          </first_editor>
+          <second_editor />
         </state>
       </provider>
     </entry>

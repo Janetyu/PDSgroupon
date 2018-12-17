@@ -15,7 +15,7 @@ var DB *Database
 var RC *RedisConn
 
 type Database struct {
-	Self   *gorm.DB
+	Self *gorm.DB
 	//Docker *gorm.DB
 }
 
@@ -26,7 +26,7 @@ type RedisConn struct {
 
 func (db *Database) Init() {
 	DB = &Database{
-		Self:   GetSelfDB(),
+		Self: GetSelfDB(),
 		//Docker: GetDockerDB(),
 	}
 }

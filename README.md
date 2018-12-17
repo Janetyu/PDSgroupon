@@ -10,3 +10,11 @@
 - 数据库驱动： jinzhu/gorm/dialects/mysql
 - 工具类： teris-io/shortid、satori/go.uuid、willf/pad
 - JWT验证：dgrijalva/jwt-go
+
+在windows下编译成Linux可执行文件命令：
+
+```
+   Set GOOS=linux 
+   Set GOARCH=amd64 
+   go build -v .
+```

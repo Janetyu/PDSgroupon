@@ -36,5 +36,5 @@ var (
 
 	// merchant errors
 	ErrMerchantHasApplyOrPass = &Errno{Code: 20401, Message: "The user has apply or passed a merchant."}
-	ErrMerchantNotFount    = &Errno{Code: 20402, Message: "The merchant was not found."}
+	ErrMerchantNotFount       = &Errno{Code: 20402, Message: "The merchant was not found."}
 )

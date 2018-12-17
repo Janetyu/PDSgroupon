@@ -23,7 +23,7 @@ func Delete(c *gin.Context) {
 	}
 
 	uid := merchant.UserId
-	user,err := model.GetUserById(uid)
+	user, err := model.GetUserById(uid)
 	if err != nil {
 		SendResponse(c, errno.ErrUserNotFound, nil)
 		return

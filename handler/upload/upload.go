@@ -62,7 +62,8 @@ func SingleUpload(c *gin.Context) {
 
 		dst, err := util.UploadFile(uploadDir, ext)
 		if err != nil {
-			SendResponse(c, errno.ErrUploadFail, nil)
+			log.Errorf(err,"Error occurred is : %v")
+			SendResponse(c, errno.New(errno.ErrUploadFail,err), nil)
 			return
 		}
 

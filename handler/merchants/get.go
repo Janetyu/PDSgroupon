@@ -27,7 +27,7 @@ func MerchantStatus(c *gin.Context) {
 	// userId
 	uid, _ := strconv.Atoi(c.Param("uid"))
 
-	mer,err := model.GetMerchantByOwnerId(uint64(uid))
+	mer, err := model.GetMerchantByOwnerId(uint64(uid))
 	if err != nil && err.Error() != "record not found" {
 		SendResponse(c, errno.ErrDatabase, nil)
 		return

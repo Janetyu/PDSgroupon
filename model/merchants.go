@@ -8,17 +8,17 @@ import (
 // 商铺Model
 type MerchantModel struct {
 	BaseModel
-	ShopName string `json:"shop_name" gorm:"column:shop_name"`
+	ShopName  string `json:"shop_name" gorm:"column:shop_name"`
 	ShopPhone string `json:"shop_phone" gorm:"column:shop_phone"`
-	ShopCert string `json:"shop_cert" gorm:"column:shop_cert"` // 营业执照
-	ShopQQ string `json:"shop_qq" gorm:"column:shop_qq"`
-	ShopLogo string `json:"shop_logo" gorm:"column:shop_logo"`
+	ShopCert  string `json:"shop_cert" gorm:"column:shop_cert"` // 营业执照
+	ShopQQ    string `json:"shop_qq" gorm:"column:shop_qq"`
+	ShopLogo  string `json:"shop_logo" gorm:"column:shop_logo"`
 	ShopIntro string `json:"shop_intro" gorm:"column:shop_intro"`
-	ShopAddr string `json:"shop_addr" gorm:"column:shop_addr"`
-	UserCert string `json:"owner_cert" gorm:"column:owner_cert"` // 身份证
-	UserId uint64 `json:"owner_id" gorm:"column:owner_id"`
-	IsReview string `json:"is_review" gorm:"column:is_review"`   // 是否通过审核
-	Mark string	`json:"mark" gorm:"column:mark"`
+	ShopAddr  string `json:"shop_addr" gorm:"column:shop_addr"`
+	UserCert  string `json:"owner_cert" gorm:"column:owner_cert"` // 身份证
+	UserId    uint64 `json:"owner_id" gorm:"column:owner_id"`
+	IsReview  string `json:"is_review" gorm:"column:is_review"` // 是否通过审核
+	Mark      string `json:"mark" gorm:"column:mark"`
 }
 
 func (m *MerchantModel) TableName() string {

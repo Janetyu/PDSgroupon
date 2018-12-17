@@ -11,12 +11,12 @@ import (
 	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
 	"PDSgroupon/util"
-	"time"
-	"path"
 	"os"
+	"path"
+	"time"
 )
 
-func Update(c *gin.Context)  {
+func Update(c *gin.Context) {
 	log.Info("Merchant UpdateForApply function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -63,17 +63,17 @@ func Update(c *gin.Context)  {
 	}
 
 	merchants := model.MerchantModel{
-		ShopName: shopName,
-		ShopAddr: shopAddr,
-		ShopCert: shopCert,
+		ShopName:  shopName,
+		ShopAddr:  shopAddr,
+		ShopCert:  shopCert,
 		ShopIntro: shopIntro,
 		ShopPhone: shopPhone,
-		ShopQQ: shopQQ,
-		ShopLogo: shoplogo,
-		UserCert: userCert,
-		UserId: uint64(id),
-		IsReview: "审核通过",
-		Mark: "",
+		ShopQQ:    shopQQ,
+		ShopLogo:  shoplogo,
+		UserCert:  userCert,
+		UserId:    uint64(id),
+		IsReview:  "审核通过",
+		Mark:      "",
 	}
 
 	if err := merchants.Update(); err != nil {
@@ -91,7 +91,7 @@ func Update(c *gin.Context)  {
 }
 
 // 管理员审核商铺认证信息
-func Review(c *gin.Context)  {
+func Review(c *gin.Context) {
 	log.Info("ReviewMerchant function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 	var r ReViewRequest
 	if err := c.Bind(&r); err != nil {
@@ -112,7 +112,7 @@ func Review(c *gin.Context)  {
 		merchant.UpdatedAt = time.Time{}
 
 		uid := merchant.UserId
-		user,err := model.GetUserById(uid)
+		user, err := model.GetUserById(uid)
 		if err != nil {
 			SendResponse(c, errno.ErrUserNotFound, nil)
 			return
@@ -144,27 +144,26 @@ func Review(c *gin.Context)  {
 	}
 
 	rsp := GetOneResponse{
-		Id: merchant.Id,
-		ShopName: merchant.ShopName,
-		ShopLogo: merchant.ShopLogo,
-		ShopAddr: merchant.ShopAddr,
+		Id:        merchant.Id,
+		ShopName:  merchant.ShopName,
+		ShopLogo:  merchant.ShopLogo,
+		ShopAddr:  merchant.ShopAddr,
 		ShopIntro: merchant.ShopIntro,
-		ShopQQ: merchant.ShopQQ,
-		ShopCert: merchant.ShopCert,
+		ShopQQ:    merchant.ShopQQ,
+		ShopCert:  merchant.ShopCert,
 		ShopPhone: merchant.ShopPhone,
-		UserId: merchant.UserId,
-		UserCert: merchant.UserCert,
-		IsReview: merchant.IsReview,
-		Mark: merchant.Mark,
+		UserId:    merchant.UserId,
+		UserCert:  merchant.UserCert,
+		IsReview:  merchant.IsReview,
+		Mark:      merchant.Mark,
 		CreatedAt: merchant.CreatedAt,
-
 	}
 
-	SendResponse(c,nil, rsp)
+	SendResponse(c, nil, rsp)
 }
 
 // 用户修改
-func UpdateForApply(c *gin.Context)  {
+func UpdateForApply(c *gin.Context) {
 	log.Info("Merchant UpdateForApply function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	id, _ := strconv.Atoi(c.Param("uid"))
@@ -211,18 +210,18 @@ func UpdateForApply(c *gin.Context)  {
 	}
 
 	merchants := model.MerchantModel{
-		BaseModel: model.BaseModel{Id: m.Id, CreatedAt: m.CreatedAt,UpdatedAt: time.Time{}},
-		ShopName: shopName,
-		ShopAddr: shopAddr,
-		ShopCert: shopCert,
+		BaseModel: model.BaseModel{Id: m.Id, CreatedAt: m.CreatedAt, UpdatedAt: time.Time{}},
+		ShopName:  shopName,
+		ShopAddr:  shopAddr,
+		ShopCert:  shopCert,
 		ShopIntro: shopIntro,
 		ShopPhone: shopPhone,
-		ShopQQ: shopQQ,
-		ShopLogo: shoplogo,
-		UserCert: userCert,
-		UserId: uint64(id),
-		IsReview: "正在审核",
-		Mark: "",
+		ShopQQ:    shopQQ,
+		ShopLogo:  shoplogo,
+		UserCert:  userCert,
+		UserId:    uint64(id),
+		IsReview:  "正在审核",
+		Mark:      "",
 	}
 
 	if err := merchants.Update(); err != nil {

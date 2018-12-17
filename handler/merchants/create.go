@@ -1,21 +1,21 @@
 package merchants
 
 import (
-	"time"
 	"path"
+	"time"
 
 	"github.com/gin-gonic/gin"
-	"github.com/lexkong/log/lager"
 	"github.com/lexkong/log"
+	"github.com/lexkong/log/lager"
 
 	. "PDSgroupon/handler"
-	"PDSgroupon/util"
-	"PDSgroupon/pkg/errno"
 	"PDSgroupon/model"
+	"PDSgroupon/pkg/errno"
+	"PDSgroupon/util"
 	"strconv"
 )
 
-func Create(c *gin.Context)  {
+func Create(c *gin.Context) {
 	log.Info("Merchant Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	shopName := c.DefaultPostForm("shop_name", "")
@@ -27,7 +27,7 @@ func Create(c *gin.Context)  {
 	userCert := c.DefaultPostForm("owner_cert", "")
 	userId := c.DefaultPostForm("owner_id", "")
 
-	if shopName == "" || shopPhone == "" || shopCert == "" || shopQQ == ""{
+	if shopName == "" || shopPhone == "" || shopCert == "" || shopQQ == "" {
 		SendResponse(c, errno.ErrValidation, nil)
 		return
 	}
@@ -42,7 +42,7 @@ func Create(c *gin.Context)  {
 		return
 	}
 
-	if mer,_ := model.GetMerchantByOwnerId(uint64(uid)); mer.ShopName != "" {
+	if mer, _ := model.GetMerchantByOwnerId(uint64(uid)); mer.ShopName != "" {
 		SendResponse(c, errno.ErrMerchantHasApplyOrPass, nil)
 		return
 	}
@@ -67,17 +67,17 @@ func Create(c *gin.Context)  {
 	}
 
 	merchants := model.MerchantModel{
-		ShopName: shopName,
-		ShopAddr: shopAddr,
-		ShopCert: shopCert,
+		ShopName:  shopName,
+		ShopAddr:  shopAddr,
+		ShopCert:  shopCert,
 		ShopIntro: shopIntro,
 		ShopPhone: shopPhone,
-		ShopQQ: shopQQ,
-		ShopLogo: dst,
-		UserCert: userCert,
-		UserId: uint64(uid),
-		IsReview: "正在审核",
-		Mark: "",
+		ShopQQ:    shopQQ,
+		ShopLogo:  dst,
+		UserCert:  userCert,
+		UserId:    uint64(uid),
+		IsReview:  "正在审核",
+		Mark:      "",
 	}
 
 	if err := merchants.Create(); err != nil {
