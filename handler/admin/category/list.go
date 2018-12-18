@@ -9,6 +9,7 @@ import (
 	. "PDSgroupon/handler"
 	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
+	"PDSgroupon/service"
 )
 
 func MainList(c *gin.Context) {
@@ -66,6 +67,21 @@ func SubList(c *gin.Context) {
 	}
 
 	SendResponse(c, nil, ListResponse{
+		TotalCount:   count,
+		CategoryList: infos,
+	})
+}
+
+func MainListWithSubCount(c *gin.Context) {
+
+	infos, count, err := service.ListMainCategoryWithSubCount()
+	if err != nil {
+		SendResponse(c, errno.ErrDatabase, nil)
+		log.Errorf(err, "getlist from database has error: ")
+		return
+	}
+
+	SendResponse(c, nil, MainListWithSubCountResponse{
 		TotalCount:   count,
 		CategoryList: infos,
 	})

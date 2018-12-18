@@ -2,6 +2,9 @@ package merchants
 
 import (
 	"strconv"
+	"os"
+	"path"
+	"time"
 
 	"github.com/gin-gonic/gin"
 	"github.com/lexkong/log"
@@ -11,16 +14,13 @@ import (
 	"PDSgroupon/model"
 	"PDSgroupon/pkg/errno"
 	"PDSgroupon/util"
-	"os"
-	"path"
-	"time"
 )
 
 func Update(c *gin.Context) {
-	log.Info("Merchant UpdateForApply function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
+	log.Info("Merchant Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	id, _ := strconv.Atoi(c.Param("id"))
-	m, err := model.GetMerchantByOwnerId(uint64(id))
+	m, err := model.GetMerchantById(uint64(id))
 	if err != nil {
 		SendResponse(c, errno.ErrMerchantNotFount, nil)
 		return
@@ -63,6 +63,7 @@ func Update(c *gin.Context) {
 	}
 
 	merchants := model.MerchantModel{
+		BaseModel: model.BaseModel{Id: m.Id, CreatedAt: m.CreatedAt, UpdatedAt: time.Time{}},
 		ShopName:  shopName,
 		ShopAddr:  shopAddr,
 		ShopCert:  shopCert,
@@ -71,7 +72,7 @@ func Update(c *gin.Context) {
 		ShopQQ:    shopQQ,
 		ShopLogo:  shoplogo,
 		UserCert:  userCert,
-		UserId:    uint64(id),
+		UserId:    m.UserId,
 		IsReview:  "审核通过",
 		Mark:      "",
 	}

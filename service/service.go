@@ -154,7 +154,7 @@ func ListUser2(username string, offset, limit int) ([]*model.UserInfo2, uint64, 
 }
 
 func ListAdmin(offset, limit int) ([]*model.AdminInfo, uint64, error) {
-	// 用于存放没有密码的userinfo，可拓展搜索等功能
+	// 用于存放没有密码的admininfo，可拓展搜索等功能
 	infos := make([]*model.AdminInfo, 0)
 	// offset 页数，limit 每页条数
 	admins, count, err := model.ListAdmin(offset, limit)
@@ -215,6 +215,74 @@ func ListAdmin(offset, limit int) ([]*model.AdminInfo, uint64, error) {
 	// 按顺序复位所有userinfo
 	for _, id := range ids {
 		infos = append(infos, adminList.IdMap[id])
+	}
+
+	return infos, count, nil
+}
+
+// 返回主类列表及其子类的数目
+func ListMainCategoryWithSubCount() ([]*model.MainWithSubCount, uint64, error) {
+	infos := make([]*model.MainWithSubCount, 0)
+	mainsorts, count, err := model.ListMainCategoryAll()
+	if err != nil {
+		return nil, count, err
+	}
+
+	// 保存数据库查询数据的原排序
+	ids := []uint64{}
+	for _, mainsort := range mainsorts {
+		ids = append(ids, mainsort.Id)
+	}
+
+	// 控制goroutine的协程调度，监控工作
+	wg := sync.WaitGroup{}
+	mainsortList := model.MainSortList{
+		Lock:  new(sync.Mutex),
+		IdMap: make(map[uint64]*model.MainWithSubCount, len(mainsorts)),
+	}
+
+	finished := make(chan bool, 1)
+	errchan := make(chan error, 1)
+	wg.Add(len(mainsorts))
+	for _, m := range mainsorts {
+		//wg.Add(1)
+
+		go func(mainsortModel *model.CategoryModel) {
+			defer wg.Done()
+
+			// 用锁保证数据一致性
+			mainsortList.Lock.Lock()
+
+			subnum, err := model.SubCountOfMainCategory(mainsortModel.Id)
+			if err != nil {
+				errchan <- err
+			}
+
+			// 对业务所需进行数据修改或其他操作
+			mainsortList.IdMap[mainsortModel.Id] = &model.MainWithSubCount{
+				MainCategory: mainsortModel,
+				SubCount: subnum,
+			}
+
+			mainsortList.Lock.Unlock()
+		}(m)
+	}
+
+	// 等 wg 为0时，关闭 finished 通道，退出并发操作
+	go func() {
+		wg.Wait()
+		close(finished)
+		close(errchan)
+	}()
+
+	select {
+	case <-finished:
+	case err := <-errchan:
+		return nil,count,err
+	}
+
+	for _, id := range ids {
+		infos = append(infos, mainsortList.IdMap[id])
 	}
 
 	return infos, count, nil

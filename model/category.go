@@ -3,12 +3,23 @@ package model
 import (
 	"PDSgroupon/pkg/constvar"
 	"gopkg.in/go-playground/validator.v9"
+	"sync"
 )
 
 type CategoryModel struct {
 	Id       uint64 `json:"id" gorm:"primary_key;AUTO_INCREMENT;column:id" `
 	Pid      uint64 `json:"pid" gorm:"column:pid" `
 	SortName string `json:"sort" gorm:"column:sort_name" `
+}
+
+type MainWithSubCount struct {
+	MainCategory *CategoryModel `json:"main_category"`
+	SubCount uint64 `json:"sub_count"`
+}
+
+type MainSortList struct {
+	Lock  *sync.Mutex
+	IdMap map[uint64]*MainWithSubCount
 }
 
 func (c *CategoryModel) TableName() string {
@@ -112,4 +123,31 @@ func ListCategoryAll() ([]*CategoryModel, error) {
 func (b *CategoryModel) Validate() error {
 	validate := validator.New()
 	return validate.Struct(b)
+}
+
+// 获取所有的主类别及主类别总数
+func ListMainCategoryAll() ([]*CategoryModel, uint64, error) {
+	categorys := make([]*CategoryModel, 0)
+	var count uint64
+
+	if err := DB.Self.Model(&CategoryModel{}).Where("pid = ?", 0).Count(&count).Error; err != nil {
+		return categorys, count, err
+	}
+
+	if err := DB.Self.Where("pid = ?",0).Find(&categorys).Error; err != nil {
+		return categorys, count, err
+	}
+
+	return categorys, count, nil
+}
+
+// 获取主类别下的子类别总数
+func SubCountOfMainCategory(pid uint64) (uint64, error) {
+	var count uint64
+
+	if err := DB.Self.Model(&CategoryModel{}).Where("pid = ?", pid).Count(&count).Error; err != nil {
+		return count, err
+	}
+
+	return count, nil
 }

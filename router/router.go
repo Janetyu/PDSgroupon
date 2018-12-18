@@ -67,7 +67,12 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 	m := g.Group("/v1/merchant")
 	m.Use(middleware.AuthMiddleware())
 	{
-
+		m.GET("/detailbyuser/:uid",merchants.MerchantStatus)
+		m.GET("/detailbyself/:id",merchants.Get)
+		m.GET("/mainsort/subcount",category.MainListWithSubCount)
+		m.GET("/mainsort/", category.MainList)
+		m.GET("/subsort/", category.SubList)
+		m.PUT("/detail/:id",merchants.Update)
 	}
 
 	a := g.Group("/v1/admin")

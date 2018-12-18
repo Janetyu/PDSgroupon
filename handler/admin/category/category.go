@@ -21,3 +21,8 @@ type ListResponse struct {
 	TotalCount   uint64                 `json:"totalCount"`
 	CategoryList []*model.CategoryModel `json:"categoryList"`
 }
+
+type MainListWithSubCountResponse struct {
+	TotalCount   uint64                 `json:"totalCount"`
+	CategoryList []*model.MainWithSubCount `json:"categoryList"`
+}
