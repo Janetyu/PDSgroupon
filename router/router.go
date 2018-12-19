@@ -14,6 +14,7 @@ import (
 	"PDSgroupon/handler/upload"
 	"PDSgroupon/handler/user"
 	"PDSgroupon/router/middleware"
+	"PDSgroupon/handler/goods"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -73,6 +74,13 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		m.GET("/mainsort/", category.MainList)
 		m.GET("/subsort/", category.SubList)
 		m.PUT("/detail/:id",merchants.Update)
+
+		m.POST("/goods/",goods.Create)
+		m.PUT("/goods/:id",goods.Update)
+		m.PUT("/goodsforshelf/:id",goods.IsShelf)
+		m.GET("/goods/:id",goods.Get)
+		m.GET("/goods/",goods.List)
+		m.DELETE("/goods/:id",goods.Delete)
 	}
 
 	a := g.Group("/v1/admin")
