@@ -63,7 +63,7 @@ func ListMerchant(offset, limit int) ([]*MerchantModel, uint64, error) {
 		return merchants, count, err
 	}
 
-	if err := DB.Self.Offset(offset - 1).Limit(limit).Find(&merchants).Error; err != nil {
+	if err := DB.Self.Offset((offset - 1) * limit).Limit(limit).Find(&merchants).Error; err != nil {
 		return merchants, count, err
 	}
 

@@ -242,10 +242,10 @@ func ListMainCategoryWithSubCount() ([]*model.MainWithSubCount, uint64, error) {
 	}
 
 	finished := make(chan bool, 1)
-	errchan := make(chan error, 1)
+	var gorerr error
 	wg.Add(len(mainsorts))
+
 	for _, m := range mainsorts {
-		//wg.Add(1)
 
 		go func(mainsortModel *model.CategoryModel) {
 			defer wg.Done()
@@ -255,13 +255,13 @@ func ListMainCategoryWithSubCount() ([]*model.MainWithSubCount, uint64, error) {
 
 			subnum, err := model.SubCountOfMainCategory(mainsortModel.Id)
 			if err != nil {
-				errchan <- err
+				gorerr = err
 			}
 
 			// 对业务所需进行数据修改或其他操作
 			mainsortList.IdMap[mainsortModel.Id] = &model.MainWithSubCount{
 				MainCategory: mainsortModel,
-				SubCount: subnum,
+				SubCount:     subnum,
 			}
 
 			mainsortList.Lock.Unlock()
@@ -272,18 +272,39 @@ func ListMainCategoryWithSubCount() ([]*model.MainWithSubCount, uint64, error) {
 	go func() {
 		wg.Wait()
 		close(finished)
-		close(errchan)
 	}()
 
 	select {
 	case <-finished:
-	case err := <-errchan:
-		return nil,count,err
 	}
 
 	for _, id := range ids {
 		infos = append(infos, mainsortList.IdMap[id])
 	}
 
+	if gorerr != nil {
+		return infos, count, nil
+	}
+
 	return infos, count, nil
+}
+
+// 返回首页所有主类别下的前6个热销商品
+func ListGoodsByAllMainSort() ([]*model.GoodsWithMainsort, error) {
+	infos := make([]*model.GoodsWithMainsort, 0)
+	mainsorts, _, err := model.ListMainCategoryAll()
+	if err != nil {
+		return nil, err
+	}
+
+	for _, mainsort := range mainsorts {
+		goods,err := model.ListGoodsForHome(mainsort.Id)
+		if err != nil {
+			return nil, err
+		}
+
+		infos = append(infos,&model.GoodsWithMainsort{mainsort,goods})
+	}
+
+	return infos,nil
 }

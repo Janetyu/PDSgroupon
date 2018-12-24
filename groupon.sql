@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50517
 File Encoding         : 65001
 
-Date: 2018-12-14 09:11:23
+Date: 2018-12-20 10:32:06
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -71,7 +71,7 @@ CREATE TABLE `categorys` (
   `pid` bigint(11) NOT NULL,
   `sort_name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=29 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of categorys
@@ -81,6 +81,27 @@ INSERT INTO `categorys` VALUES ('4', '2', '面膜');
 INSERT INTO `categorys` VALUES ('5', '0', '食品');
 INSERT INTO `categorys` VALUES ('6', '2', '口红');
 INSERT INTO `categorys` VALUES ('7', '5', '面包');
+INSERT INTO `categorys` VALUES ('8', '0', '零食');
+INSERT INTO `categorys` VALUES ('9', '0', '旅行');
+INSERT INTO `categorys` VALUES ('10', '0', '电子产品');
+INSERT INTO `categorys` VALUES ('11', '0', '数码产品');
+INSERT INTO `categorys` VALUES ('12', '0', 'macbook');
+INSERT INTO `categorys` VALUES ('13', '0', '电竞');
+INSERT INTO `categorys` VALUES ('14', '0', '话费');
+INSERT INTO `categorys` VALUES ('15', '0', '男装服饰');
+INSERT INTO `categorys` VALUES ('16', '0', '精品女装');
+INSERT INTO `categorys` VALUES ('17', '0', '可爱童装');
+INSERT INTO `categorys` VALUES ('18', '0', '床上用品');
+INSERT INTO `categorys` VALUES ('19', '0', '童装');
+INSERT INTO `categorys` VALUES ('20', '2', '宝贝');
+INSERT INTO `categorys` VALUES ('21', '2', '宝贝2');
+INSERT INTO `categorys` VALUES ('22', '2', '嘿嘿嘿');
+INSERT INTO `categorys` VALUES ('23', '2', '啊啊啊啊');
+INSERT INTO `categorys` VALUES ('24', '2', '大苏打实打实');
+INSERT INTO `categorys` VALUES ('25', '2', '啊实打实的');
+INSERT INTO `categorys` VALUES ('26', '2', 's\'d\'s\'d');
+INSERT INTO `categorys` VALUES ('27', '2', '上单');
+INSERT INTO `categorys` VALUES ('28', '2', '啊啊啊');
 
 -- ----------------------------
 -- Table structure for `clients`
@@ -121,22 +142,36 @@ CREATE TABLE `coupons` (
 -- ----------------------------
 DROP TABLE IF EXISTS `goods`;
 CREATE TABLE `goods` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `goods_name` varchar(64) DEFAULT NULL,
+  `goods_desc` varchar(255) DEFAULT NULL,
+  `goods_photo` varchar(255) DEFAULT NULL,
+  `goods_cost` varchar(64) DEFAULT NULL,
   `goods_price` varchar(64) DEFAULT NULL,
-  `goods_sort` varchar(64) DEFAULT NULL,
-  `shop_id` int(11) DEFAULT NULL,
+  `goods_discount` varchar(64) DEFAULT NULL,
   `goods_stock` int(11) DEFAULT NULL,
-  `person_num` int(11) DEFAULT NULL,
+  `stock_warn` int(11) DEFAULT NULL,
+  `goods_people` int(11) DEFAULT NULL,
   `group_aging` int(11) DEFAULT NULL,
-  `discount_price` float DEFAULT NULL,
-  `created_time` datetime DEFAULT NULL,
+  `shop_id` bigint(11) DEFAULT NULL,
+  `mainsort_id` bigint(11) DEFAULT NULL,
+  `subsort_id` bigint(11) DEFAULT NULL,
+  `is_fare` tinyint(4) DEFAULT NULL,
+  `goods_fare` varchar(64) DEFAULT NULL,
+  `is_shelf` tinyint(4) DEFAULT NULL,
+  `goods_sales` int(11) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of goods
 -- ----------------------------
+INSERT INTO `goods` VALUES ('1', '小辣条', 'xxxxx', 'static/upload/goods/2018/12/19/ae44fbe1e3b842b3ef3dc9b35886fe5a.png', '11', '15', '13', '200', '10', '3', '2', '3', '5', '7', '1', '8', '1', '0', '2018-12-19 13:36:39', '2018-12-19 13:36:39');
+INSERT INTO `goods` VALUES ('3', '小辣条2', 'xxxxxxxxxx', 'static/upload/goods/2018/12/19/3d7dffb6a0366f72a2a9ec68f331d4c8.png', '11', '15', '13', '200', '10', '3', '2', '3', '5', '7', '1', '8', '0', '0', '2018-12-19 13:49:54', '2018-12-19 13:56:37');
+INSERT INTO `goods` VALUES ('4', '小辣条3', 'xxxxxxxxxx', 'static/upload/goods/2018/12/19/b6a020f6d6a573a8be40097d5cee47fd.png', '11', '15', '13', '200', '10', '3', '2', '3', '5', '7', '1', '8', '1', '0', '2018-12-19 13:49:59', '2018-12-19 13:49:59');
+INSERT INTO `goods` VALUES ('5', '小辣条4', 'xxxxxxxxxx', 'static/upload/goods/2018/12/19/7382be7e9b5a172005b117f22d420e4a.png', '11', '15', '13', '200', '10', '3', '2', '3', '5', '7', '1', '8', '1', '0', '2018-12-19 13:50:02', '2018-12-19 13:50:02');
 
 -- ----------------------------
 -- Table structure for `groups`
@@ -181,15 +216,23 @@ CREATE TABLE `group_users` (
 -- ----------------------------
 DROP TABLE IF EXISTS `orders`;
 CREATE TABLE `orders` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `id` bigint(11) NOT NULL AUTO_INCREMENT,
   `order_num` varchar(64) DEFAULT NULL,
-  `goods_id` int(11) DEFAULT NULL,
-  `client_id` int(11) DEFAULT NULL,
-  `order_price` float DEFAULT NULL,
-  `order_status` varchar(64) DEFAULT NULL,
-  `group_id` int(11) DEFAULT NULL,
+  `merchant_id` bigint(11) DEFAULT NULL,
+  `goods_id` bigint(11) DEFAULT NULL,
+  `client_id` bigint(11) DEFAULT NULL,
+  `group_id` bigint(11) DEFAULT NULL,
+  `client_nick` varchar(64) DEFAULT NULL,
+  `client_phone` varchar(64) DEFAULT NULL,
   `order_addr` varchar(64) DEFAULT NULL,
-  `created_time` datetime DEFAULT NULL,
+  `order_price` varchar(64) DEFAULT NULL,
+  `order_status` varchar(64) DEFAULT NULL,
+  `order_mark` varchar(255) DEFAULT NULL,
+  `pay_method` varchar(64) DEFAULT NULL,
+  `createdAt` timestamp NULL DEFAULT NULL,
+  `updatedAt` timestamp NULL DEFAULT NULL,
+  `payedAt` timestamp NULL DEFAULT NULL,
+  `finishedAt` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -279,8 +322,8 @@ CREATE TABLE `shops` (
 -- Records of shops
 -- ----------------------------
 INSERT INTO `shops` VALUES ('1', '消消乐', '4526852385456451', '2', '顺德', '18320399457', '54687132164', '931242644', 'static/upload/merchants/2018/12/13/f58c0463dfef000ff7c4ca9bc1985de8.jpg', 'sdsadasd13212465', '审核通过', '', '2018-12-13 16:07:45', '2018-12-14 08:47:55');
-INSERT INTO `shops` VALUES ('3', '消消乐2', '4526852385456451', '5', '顺德2', '18320399457', '54687132164', '931242644', 'static/upload/merchants/2018/12/13/39db0c9e7f0e97a67bab8a3cb8c072a6.jpg', 'sdsadasd13212465', '审核通过', '', '2018-12-13 16:24:32', '2018-12-14 08:54:21');
-INSERT INTO `shops` VALUES ('4', '消消乐2', '4526852385456451', '6', '顺德2', '18320399457', '54687132164', '931242644', 'static/upload/merchants/2018/12/13/24cfede81c555d245ec9cc9d2cc6a0eb.jpg', 'sdsadasd13212465', '正在审核', null, '2018-12-13 16:24:36', '2018-12-13 16:24:36');
+INSERT INTO `shops` VALUES ('3', 'B317专卖店', '4526852385456451', '5', '湛江市海大路1号广东海洋大学湖光校区', '132677447711', '54687132164', '466177611', 'static/upload/merchants/2018/12/20/26fce6ccd4562756400ef3e70da5b4e6.png', '噼里啪啦稀里哗啦噼里啪啦稀里哗啦噼里啪啦稀里哗啦噼里啪啦稀里哗啦噼里啪啦稀里哗啦噼里啪啦稀里哗啦噼里啪啦稀里哗啦', '审核通过', '', '2018-12-13 16:24:32', '2018-12-20 10:31:15');
+INSERT INTO `shops` VALUES ('4', '消消乐2', '4526852385456451', '6', '顺德2', '18320399457', '54687132164', '931242644', 'static/upload/merchants/2018/12/13/24cfede81c555d245ec9cc9d2cc6a0eb.jpg', 'sdsadasd13212465', '正在审核', '', '2018-12-13 16:24:36', '2018-12-13 16:24:36');
 
 -- ----------------------------
 -- Table structure for `shop_msgs`
@@ -347,9 +390,9 @@ CREATE TABLE `users` (
 -- Records of users
 -- ----------------------------
 INSERT INTO `users` VALUES ('2', '18320399457', '小白', '$2a$10$PI4zH/PTaMPV4vc4mRM1n.Bdt222bdgUIER1yKOjRlZHP1yMrL6Uu', '顺德', '伟林', 'static/upload/user/2018/11/29/25c73b25cc67595a78fb387eea0c4972.jpg', '男', '0', '2', '2018-11-29 16:47:08', '2018-12-14 08:47:53');
-INSERT INTO `users` VALUES ('4', '13659763182', '', '$2a$10$hsxR4ofpweH1inhlsNo2OeClufMDwEvn3xj9Q6rndPN5JyqUpyyx6', '陆丰', '富华', '', '男', '0', '1', '2018-11-30 09:55:26', '2018-11-30 09:55:26');
+INSERT INTO `users` VALUES ('4', '13659763182', '', '$2a$10$hsxR4ofpweH1inhlsNo2OeClufMDwEvn3xj9Q6rndPN5JyqUpyyx6', '陆丰', '富华', 'static/upload/user/2018/12/14/f0dbae1558b4565b081590c1933a7bd4.jpg', '男', '0', '1', '2018-11-30 09:55:26', '2018-12-14 11:17:08');
 INSERT INTO `users` VALUES ('5', '13420120750', '', '$2a$10$7SyJNdSzEGd521IKFJR73eTnl8chkzDXupto8tWWIbZljdq27koHi', '廉江', '景润', '', '男', '0', '2', '2018-11-30 10:13:02', '2018-12-14 08:54:21');
-INSERT INTO `users` VALUES ('6', '13420121717', '小茂', '$2a$10$LtwwPtQ8/R4Rv7RcxgRXPug2UAP1C6TGnf3UlREjwPUAogYPSON02', '深圳', '林佳茂', '', '男', '0', '1', '2018-11-30 18:54:46', '2018-11-30 21:27:25');
+INSERT INTO `users` VALUES ('6', '13420121717', '小茂', '$2a$10$LtwwPtQ8/R4Rv7RcxgRXPug2UAP1C6TGnf3UlREjwPUAogYPSON02', '深圳', '林佳茂', 'static/upload/user/2018/12/14/a97f3dd15cfe6189cbac3d7e5f927c9e.jpg', '男', '0', '1', '2018-11-30 18:54:46', '2018-12-14 11:20:16');
 
 -- ----------------------------
 -- Table structure for `user_coupons`

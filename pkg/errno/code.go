@@ -39,5 +39,8 @@ var (
 	ErrMerchantNotFount       = &Errno{Code: 20402, Message: "The merchant was not found."}
 
 	// goods errors
-	ErrGoodsNotFount		  = &Errno{Code: 20501, Message: "The goods was not found."}
+	ErrGoodsNotFount = &Errno{Code: 20501, Message: "The goods was not found."}
+
+	// orders errors
+	ErrOrderNotFount = &Errno{Code: 20601, Message: "The order was not found."}
 )

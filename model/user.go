@@ -108,7 +108,7 @@ func ListUser(offset, limit int) ([]*UserModel, uint64, error) {
 		return users, count, err
 	}
 
-	if err := DB.Self.Offset(offset - 1).Limit(limit).Order("id desc").Find(&users).Error; err != nil {
+	if err := DB.Self.Offset((offset - 1) * limit).Limit(limit).Order("id desc").Find(&users).Error; err != nil {
 		return users, count, err
 	}
 

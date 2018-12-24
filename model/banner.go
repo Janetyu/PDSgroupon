@@ -50,7 +50,7 @@ func ListBanner(offset, limit int) ([]*BannerModel, uint64, error) {
 		return banners, count, err
 	}
 
-	if err := DB.Self.Offset(offset - 1).Limit(limit).Order("order").Find(&banners).Error; err != nil {
+	if err := DB.Self.Offset((offset - 1) * limit).Limit(limit).Order("order").Find(&banners).Error; err != nil {
 		return banners, count, err
 	}
 

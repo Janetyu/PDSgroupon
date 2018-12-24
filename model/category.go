@@ -14,7 +14,7 @@ type CategoryModel struct {
 
 type MainWithSubCount struct {
 	MainCategory *CategoryModel `json:"main_category"`
-	SubCount uint64 `json:"sub_count"`
+	SubCount     uint64         `json:"sub_count"`
 }
 
 type MainSortList struct {
@@ -83,7 +83,7 @@ func ListMainCategory(offset, limit int) ([]*CategoryModel, uint64, error) {
 		return categorys, count, err
 	}
 
-	if err := DB.Self.Where("pid = ?", 0).Offset(offset - 1).Limit(limit).Order("id asc").Find(&categorys).Error; err != nil {
+	if err := DB.Self.Where("pid = ?", 0).Offset((offset - 1) * limit).Limit(limit).Order("id asc").Find(&categorys).Error; err != nil {
 		return categorys, count, err
 	}
 
@@ -102,7 +102,7 @@ func ListSubCategory(offset, limit, pid int) ([]*CategoryModel, uint64, error) {
 		return categorys, count, err
 	}
 
-	if err := DB.Self.Where("pid = ?", pid).Offset(offset - 1).Limit(limit).Order("id asc").Find(&categorys).Error; err != nil {
+	if err := DB.Self.Where("pid = ?", pid).Offset((offset - 1) * limit).Limit(limit).Order("id asc").Find(&categorys).Error; err != nil {
 		return categorys, count, err
 	}
 
@@ -134,11 +134,22 @@ func ListMainCategoryAll() ([]*CategoryModel, uint64, error) {
 		return categorys, count, err
 	}
 
-	if err := DB.Self.Where("pid = ?",0).Find(&categorys).Error; err != nil {
+	if err := DB.Self.Where("pid = ?", 0).Find(&categorys).Error; err != nil {
 		return categorys, count, err
 	}
 
 	return categorys, count, nil
+}
+
+// 根据主类别id获取所有子类别
+func ListSubCategoryAll(pid int) ([]*CategoryModel, error) {
+	categorys := make([]*CategoryModel, 0)
+
+	if err := DB.Self.Where("pid = ?", uint64(pid)).Find(&categorys).Error; err != nil {
+		return categorys, err
+	}
+
+	return categorys, nil
 }
 
 // 获取主类别下的子类别总数
@@ -150,4 +161,15 @@ func SubCountOfMainCategory(pid uint64) (uint64, error) {
 	}
 
 	return count, nil
+}
+
+// 查找所有的子类别，不包含主类别
+func ListSubNoMainCategory() ([]*CategoryModel, error) {
+	categorys := make([]*CategoryModel, 0)
+
+	if err := DB.Self.Not("pid", 0).Find(&categorys).Error; err != nil {
+		return categorys, err
+	}
+
+	return categorys, nil
 }

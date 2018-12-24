@@ -9,12 +9,13 @@ import (
 	"PDSgroupon/handler/admin/banner"
 	"PDSgroupon/handler/admin/category"
 	"PDSgroupon/handler/admin/permission"
+	"PDSgroupon/handler/goods"
 	"PDSgroupon/handler/merchants"
+	"PDSgroupon/handler/orders"
 	"PDSgroupon/handler/sd"
 	"PDSgroupon/handler/upload"
 	"PDSgroupon/handler/user"
 	"PDSgroupon/router/middleware"
-	"PDSgroupon/handler/goods"
 )
 
 // 加载 中间件，路由器，处理器等
@@ -50,6 +51,9 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		global.GET("/mainsort/", category.MainList)
 		global.GET("/subsort/", category.SubList)
 		global.GET("/banner/", banner.List)
+
+		global.GET("/goodsforhome/",goods.ListGoodsForHome)
+		global.GET("/goodsforquery/",goods.ListGoodsForQuery)
 	}
 
 	u := g.Group("/v1/user")
@@ -63,24 +67,39 @@ func Load(g *gin.Engine, mw ...gin.HandlerFunc) *gin.Engine {
 		u.POST("/merchant/", merchants.Create)
 		u.PUT("/merchant/:uid", merchants.UpdateForApply)
 		u.GET("/merchant/:uid", merchants.MerchantStatus)
+
+		u.POST("/orders/", orders.Create)
+		u.GET("/orders/:id", orders.Get)
+		u.GET("/orderlistbyuser/", orders.ListForUser)
 	}
 
 	m := g.Group("/v1/merchant")
 	m.Use(middleware.AuthMiddleware())
 	{
-		m.GET("/detailbyuser/:uid",merchants.MerchantStatus)
-		m.GET("/detailbyself/:id",merchants.Get)
-		m.GET("/mainsort/subcount",category.MainListWithSubCount)
+		m.GET("/detailbyuser/:uid", merchants.MerchantStatus)
+		m.GET("/detailbyself/:id", merchants.Get)
+		m.GET("/mainsort/subcount", category.MainListWithSubCount)
 		m.GET("/mainsort/", category.MainList)
 		m.GET("/subsort/", category.SubList)
-		m.PUT("/detail/:id",merchants.Update)
+		m.GET("/mainsortall/",category.MainListAll)
+		m.GET("/subsortall/",category.SubListAllByMainId)
+		m.GET("/suball/",category.SubListAll)
+		m.PUT("/detail/:id", merchants.Update)
 
-		m.POST("/goods/",goods.Create)
-		m.PUT("/goods/:id",goods.Update)
-		m.PUT("/goodsforshelf/:id",goods.IsShelf)
-		m.GET("/goods/:id",goods.Get)
-		m.GET("/goods/",goods.List)
-		m.DELETE("/goods/:id",goods.Delete)
+		m.POST("/goods/", goods.Create)
+		m.PUT("/goods/:id", goods.Update)
+		m.PUT("/goodsforshelf/:id", goods.IsShelf)
+		m.GET("/goods/:id", goods.Get)
+		m.GET("/goods/", goods.ListForMerchant)
+		m.GET("/goodsbysub",goods.ListForMerchantAndSubSort)
+		m.DELETE("/goods/:id", goods.Delete)
+		m.DELETE("/goodsbymain/",goods.DeleteByMain)
+		m.DELETE("/goodsbysub/",goods.DeleteBySub)
+
+		m.GET("/orders/:id", orders.Get)
+		m.GET("/orderlistbymerchant", orders.ListForMerchant)
+		m.GET("/orderlistbygoods", orders.ListForGoods)
+		m.PUT("/orders/:id", orders.UpdateStatus)
 	}
 
 	a := g.Group("/v1/admin")

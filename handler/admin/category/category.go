@@ -22,7 +22,11 @@ type ListResponse struct {
 	CategoryList []*model.CategoryModel `json:"categoryList"`
 }
 
+type ListSortAllResponse struct {
+	CategoryList []*model.CategoryModel `json:"categoryList"`
+}
+
 type MainListWithSubCountResponse struct {
-	TotalCount   uint64                 `json:"totalCount"`
+	TotalCount   uint64                    `json:"totalCount"`
 	CategoryList []*model.MainWithSubCount `json:"categoryList"`
 }

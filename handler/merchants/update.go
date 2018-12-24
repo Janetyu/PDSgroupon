@@ -1,9 +1,9 @@
 package merchants
 
 import (
-	"strconv"
 	"os"
 	"path"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -33,33 +33,43 @@ func Update(c *gin.Context) {
 	shopIntro := c.DefaultPostForm("shop_intro", m.ShopIntro)
 	shopAddr := c.DefaultPostForm("shop_addr", m.ShopAddr)
 	userCert := c.DefaultPostForm("owner_cert", m.UserCert)
+	changehead := c.DefaultPostForm("change_head", "false")
 
 	shoplogo := m.ShopLogo
 
-	file, _ := c.FormFile("shop_logo")
-
-	if file != nil {
-
-		if ok := IsPathVaild(file.Filename); !ok {
-			SendResponse(c, errno.ErrUploadExt, nil)
-			return
-		}
-
-		uploadDir := "static/upload/merchants/" + time.Now().Format("2006/01/02/")
-		dst, err := util.UploadFile(uploadDir, path.Ext(file.Filename))
+	if changehead == "true" {
+		file,err := c.FormFile("shop_logo")
 		if err != nil {
-			SendResponse(c, errno.ErrUploadFail, nil)
-			return
+			log.Errorf(err, "get val from shop_logo occured error:")
 		}
 
-		// 删除旧文件地址
-		if err := os.Remove(shoplogo); err != nil {
-			log.Errorf(err, "del file occured error is :")
+		if file != nil && err == nil{
+
+			if ok := IsPathVaild(file.Filename); !ok {
+				SendResponse(c, errno.ErrUploadExt, nil)
+				return
+			}
+
+			uploadDir := "static/upload/merchants/" + time.Now().Format("2006/01/02/")
+			dst, err := util.UploadFile(uploadDir, path.Ext(file.Filename))
+			if err != nil {
+				SendResponse(c, errno.ErrUploadFail, nil)
+				return
+			}
+
+			// 删除旧文件地址
+			if err := os.Remove(shoplogo); err != nil {
+				log.Errorf(err, "del file occured error is :")
+			}
+
+			// 更新文件地址
+			shoplogo = dst
+
+			if err := c.SaveUploadedFile(file, shoplogo); err != nil {
+				SendResponse(c, errno.InternalServerError, nil)
+				return
+			}
 		}
-
-		// 更新文件地址
-		shoplogo = dst
-
 	}
 
 	merchants := model.MerchantModel{
@@ -80,11 +90,6 @@ func Update(c *gin.Context) {
 	if err := merchants.Update(); err != nil {
 		SendResponse(c, errno.ErrDatabase, nil)
 		log.Errorf(err, "the database error is:")
-		return
-	}
-
-	if err := c.SaveUploadedFile(file, shoplogo); err != nil {
-		SendResponse(c, errno.InternalServerError, nil)
 		return
 	}
 

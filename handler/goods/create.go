@@ -1,8 +1,8 @@
 package goods
 
 import (
-	"strconv"
 	"path"
+	"strconv"
 	"time"
 
 	"github.com/gin-gonic/gin"
@@ -15,7 +15,7 @@ import (
 	"PDSgroupon/util"
 )
 
-func Create(c *gin.Context)  {
+func Create(c *gin.Context) {
 	log.Info("Goods Create function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	goodsName := c.DefaultPostForm("goods_name", "")
@@ -93,10 +93,10 @@ func Create(c *gin.Context)  {
 		return
 	}
 
-	gp,_ := strconv.Atoi(goodsPeople) // 拼团人数
-	gs,_ := strconv.Atoi(goodsStock)  // 商品库存
-	ga,_ := strconv.Atoi(groupAging)  // 拼团时效
-	sw,_ := strconv.Atoi(stockWarn)   // 库存报警
+	gp, _ := strconv.Atoi(goodsPeople) // 拼团人数
+	gs, _ := strconv.Atoi(goodsStock)  // 商品库存
+	ga, _ := strconv.Atoi(groupAging)  // 拼团时效
+	sw, _ := strconv.Atoi(stockWarn)   // 库存报警
 
 	isf := true
 	if isFare == "false" {
@@ -104,23 +104,23 @@ func Create(c *gin.Context)  {
 	}
 
 	goods := model.GoodsModel{
-		GoodsName: goodsName,
-		GoodsDesc: goodsDesc,
-		GoodsCost: goodsCost,
-		GoodsPrice: goodsPrice,
+		GoodsName:     goodsName,
+		GoodsDesc:     goodsDesc,
+		GoodsCost:     goodsCost,
+		GoodsPrice:    goodsPrice,
 		GoodsDiscount: goodsDiscount,
-		GoodsStock: gs,
-		StockWarn: sw,
-		GoodsPeople: gp,
-		GroupAging: ga,
-		ShopId: uint64(sid),
-		MainsortId: uint64(mainsid),
-		SubsortId: uint64(subsid),
-		GoodsFare: goodsFare,
-		GoodsPhoto: dst,
-		GoodsSales: 0,
-		IsFare: isf,
-		IsShelf: true,
+		GoodsStock:    gs,
+		StockWarn:     sw,
+		GoodsPeople:   gp,
+		GroupAging:    ga,
+		ShopId:        uint64(sid),
+		MainsortId:    uint64(mainsid),
+		SubsortId:     uint64(subsid),
+		GoodsFare:     goodsFare,
+		GoodsPhoto:    dst,
+		GoodsSales:    0,
+		IsFare:        isf,
+		IsShelf:       true,
 	}
 
 	if err := goods.Create(); err != nil {

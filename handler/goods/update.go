@@ -5,9 +5,9 @@ import (
 	"github.com/lexkong/log"
 	"github.com/lexkong/log/lager"
 
+	"path"
 	"strconv"
 	"time"
-	"path"
 
 	. "PDSgroupon/handler"
 	"PDSgroupon/model"
@@ -16,7 +16,7 @@ import (
 	"os"
 )
 
-func Update(c *gin.Context)  {
+func Update(c *gin.Context) {
 	log.Info("Goods Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -40,22 +40,24 @@ func Update(c *gin.Context)  {
 	isFare := c.DefaultPostForm("is_fare", "")
 	goodsFare := c.DefaultPostForm("goods_fare", g.GoodsFare)
 
-	gs,err := strconv.Atoi(goodsStock)  // 商品库存
+	changehead := c.DefaultPostForm("change_photo", "false")
+
+	gs, err := strconv.Atoi(goodsStock) // 商品库存
 	if err != nil {
 		gs = g.GoodsStock
 	}
 
-	sw,err := strconv.Atoi(stockWarn)   // 库存报警
+	sw, err := strconv.Atoi(stockWarn) // 库存报警
 	if err != nil {
 		sw = g.StockWarn
 	}
 
-	gp,err := strconv.Atoi(goodsPeople) // 拼团人数
+	gp, err := strconv.Atoi(goodsPeople) // 拼团人数
 	if err != nil {
 		gp = g.GoodsPeople
 	}
 
-	ga,err := strconv.Atoi(groupAging)  // 拼团时效
+	ga, err := strconv.Atoi(groupAging) // 拼团时效
 	if err != nil {
 		ga = g.GroupAging
 	}
@@ -72,30 +74,37 @@ func Update(c *gin.Context)  {
 
 	goodsPhoto := g.GoodsPhoto
 
-	file, _ := c.FormFile("goods_photo")
+	if changehead == "true" {
+		file, _ := c.FormFile("goods_photo")
 
-	if file != nil {
+		if file != nil {
 
-		if ok := IsPathVaild(file.Filename); !ok {
-			SendResponse(c, errno.ErrUploadExt, nil)
-			return
+			if ok := IsPathVaild(file.Filename); !ok {
+				SendResponse(c, errno.ErrUploadExt, nil)
+				return
+			}
+
+			uploadDir := "static/upload/goods/" + time.Now().Format("2006/01/02/")
+			dst, err := util.UploadFile(uploadDir, path.Ext(file.Filename))
+			if err != nil {
+				SendResponse(c, errno.ErrUploadFail, nil)
+				return
+			}
+
+			// 删除旧文件地址
+			if err := os.Remove(goodsPhoto); err != nil {
+				log.Errorf(err, "del file occured error is :")
+			}
+
+			// 更新文件地址
+			goodsPhoto = dst
+
+
+			if err := c.SaveUploadedFile(file, goodsPhoto); err != nil {
+				SendResponse(c, errno.InternalServerError, nil)
+				return
+			}
 		}
-
-		uploadDir := "static/upload/goods/" + time.Now().Format("2006/01/02/")
-		dst, err := util.UploadFile(uploadDir, path.Ext(file.Filename))
-		if err != nil {
-			SendResponse(c, errno.ErrUploadFail, nil)
-			return
-		}
-
-		// 删除旧文件地址
-		if err := os.Remove(goodsPhoto); err != nil {
-			log.Errorf(err, "del file occured error is :")
-		}
-
-		// 更新文件地址
-		goodsPhoto = dst
-
 	}
 
 	isf := g.IsFare
@@ -108,24 +117,24 @@ func Update(c *gin.Context)  {
 	}
 
 	goods := model.GoodsModel{
-		BaseModel: model.BaseModel{Id: g.Id, CreatedAt: g.CreatedAt, UpdatedAt: time.Time{}},
-		GoodsName: goodsName,
-		GoodsDesc: goodsDesc,
-		GoodsCost: goodsCost,
-		GoodsPrice: goodsPrice,
+		BaseModel:     model.BaseModel{Id: g.Id, CreatedAt: g.CreatedAt, UpdatedAt: time.Time{}},
+		GoodsName:     goodsName,
+		GoodsDesc:     goodsDesc,
+		GoodsCost:     goodsCost,
+		GoodsPrice:    goodsPrice,
 		GoodsDiscount: goodsDiscount,
-		GoodsStock: gs,
-		StockWarn: sw,
-		GoodsPeople: gp,
-		GroupAging: ga,
-		ShopId: g.ShopId,
-		MainsortId: uint64(mainsid),
-		SubsortId: uint64(subsid),
-		GoodsPhoto: goodsPhoto,
-		GoodsSales: g.GoodsSales,
-		IsFare: isf,
-		GoodsFare: goodsFare,
-		IsShelf: g.IsShelf,
+		GoodsStock:    gs,
+		StockWarn:     sw,
+		GoodsPeople:   gp,
+		GroupAging:    ga,
+		ShopId:        g.ShopId,
+		MainsortId:    uint64(mainsid),
+		SubsortId:     uint64(subsid),
+		GoodsPhoto:    goodsPhoto,
+		GoodsSales:    g.GoodsSales,
+		IsFare:        isf,
+		GoodsFare:     goodsFare,
+		IsShelf:       g.IsShelf,
 	}
 
 	if err := goods.Update(); err != nil {
@@ -134,15 +143,10 @@ func Update(c *gin.Context)  {
 		return
 	}
 
-	if err := c.SaveUploadedFile(file, goodsPhoto); err != nil {
-		SendResponse(c, errno.InternalServerError, nil)
-		return
-	}
-
 	SendResponse(c, nil, goods)
 }
 
-func IsShelf(c *gin.Context)  {
+func IsShelf(c *gin.Context) {
 	log.Info("GoodsShelf Update function called.", lager.Data{"X-Request-Id": util.GetReqID(c)})
 
 	id, _ := strconv.Atoi(c.Param("id"))

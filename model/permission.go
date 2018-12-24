@@ -54,7 +54,7 @@ func ListPermission(offset, limit int) ([]*PermissionModel, uint64, error) {
 		return permissions, count, err
 	}
 
-	if err := DB.Self.Offset(offset - 1).Limit(limit).Order("id asc").Find(&permissions).Error; err != nil {
+	if err := DB.Self.Offset((offset - 1) * limit).Limit(limit).Order("id asc").Find(&permissions).Error; err != nil {
 		return permissions, count, err
 	}
 
